@@ -1,0 +1,86 @@
+<div id="detailPageDiv" ng-cloak>
+    <div id="detailViewContainer">
+        <div>
+            <div>
+                <img id="incubeeDetailLogoImage" src="{{vm.incubeeDetailsArray[0].data.images[0]}}">
+                <font id="incubeeDetailTitle">{{vm.incubeeDetailsArray[0].data.company_name}}</font>
+                <font ng-show="vm.investor" id="detailRatingsLabel">{{vm.incubeeDetailsArray[1].data.reviewData.averageRating}}/5 ({{vm.incubeeDetailsArray[1].data.reviewData.noOfRatings}} {{vm.ratingLabel}})</font>
+                <button ng-hide="vm.investor" id="editCompanyInfoButton" class="btn" ui-sref="/signupState({incubeeId: 'This is a test'})">Edit Company Information</button>
+                </br>
+                <div id="companyInfoDiv">
+                    <label id="detailWebsiteLabel" class="btn" ng-click="vm.showCompanyWebsite(vm.incubeeDetailsArray[0].data.company_url)">{{vm.incubeeDetailsArray[0].data.company_url}}</label>
+                    </br>
+                    <font> {{vm.incubeeDetailsArray[0].data.founder}} - {{vm.incubeeDetailsArray[0].data.location}} </font>
+                    </br>
+                    <font> {{vm.incubeeDetailsArray[0].data.field}} - {{vm.incubeeDetailsArray[0].data.project_status}}</font>
+                    </br>
+                </div>
+            </div>
+            <div id="descriptionsDiv">
+                <font id="highConcept">{{vm.incubeeDetailsArray[0].data.high_concept}}</font>
+                </br>
+                <div id="detailImagesDiv">
+                    <ul id="detailImagesList">
+                        <li ng-repeat="image in vm.incubeeDetailsArray[0].data.images">
+                            <img id="detailImages" src="{{image}}">
+                        </li>
+                    </ul>
+                </div>
+                <div id="incubeeDescription">
+                    <font>{{vm.incubeeDetailsArray[0].data.description}}</font>
+                </div>
+            </div>
+            <div id="companyReviewsDiv" ng-show="vm.investor">
+                <label id="detailReviewLable">Reviews</label>
+                <button data-toggle="modal" id="leaveReviewButton" data-target="#reviewModal">Leave a Review</button>
+                <table id="detailReviewTable" class="table">
+                    <thead>
+                    </thead>
+                    <tbody class="table">
+                        <tr ng-repeat="review in vm.incubeeDetailsArray[1].data.reviews">
+                            <td><img id="detailsReviewProfileImage" src="{{vm.reviewNamesArray[$index].image_url}}"></td>
+                            <td>{{review.rating}}/5</td>
+                            <td>{{vm.reviewNamesArray[$index].name}} - {{review.title}} - {{review.description}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="reviewModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" id="modalDetails">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Leave a Review</h4>
+                </div>
+                <div class="modal-body">
+                    <input class="form-control" type="text" name="title" ng-model="vm.titleForReview" placeholder="Review Title">
+                    <div id="detailReviewOptionsDiv">
+                        <label>Status</label>
+                        <select ng-model="vm.detailReviewStatus">
+                            <option value="INV">Invested</option>
+                            <option value="INT">Interested</option>
+                            <option value="PAS">Passed</option>
+                        </select>
+                        <label>Meeting</label>
+                        <div class="btn-group">
+                            <button class="btn btn-default" id="detailMeetingButton" ng-model="vm.per" ng-click="vm.meetingType('PER')" style="background-color: {{vm.selectedPerColor}};">In Person</button>
+                            <button class="btn btn-default" id="detailMeetingButton" ng-model="vm.pho" ng-click="vm.meetingType('PHO')" style="background-color: {{vm.selectedPhoColor}};">Phone</button>
+                        </div>
+                        <label>Rating</label>
+                        <select ng-model="vm.detailReviewRating">
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <textarea class="form-control" ng-model="vm.detailsForReview" placeholder="Description"></textarea>
+                    <button id="submitReviewButton" class="btn btn-success" ng-click="vm.submitReview(vm.titleForReview, vm.detailsForReview)">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>

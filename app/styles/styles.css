@@ -1,0 +1,423 @@
+
+/*incubeeDetailsState*/
+#detailPageDiv {
+    background-color: #eee;
+}
+
+#detailViewContainer {
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 2em;
+    height: 90%;
+    background-color: #fff;
+    box-shadow: 0 0 20px #ccc;
+    border-radius: .3em;
+    margin-bottom: 5em;
+}
+
+#detailImagesDiv {
+    padding: 1em;
+    width: auto;
+    max-height: 400px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+#detailImagesList li {
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+#detailImages {
+    max-height: 20em;
+    margin: 1em;
+    max-width: 20em;
+}
+
+#leaveReviewButton {
+    color: #07947a;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+#incubeeDetailLogoImage {
+    float: left;
+    /*  border-radius: 25%;*/
+    max-height: 10em;
+    max-width: 10em;
+    margin: 1em;
+}
+
+#incubeeDetailTitle {
+    margin-top: .4em;
+    font-size: 3em;
+}
+
+#detailRatingsLabel {
+    float: right;
+    padding-right: 1em;
+    margin-top: 1em;
+    font-size: 1em;
+}
+
+#detailWebsiteLabel {
+    padding-left: 0em;
+    color: #4286f4;
+}
+
+#detailReviewLable {
+    padding-left: 3em;
+}
+
+#detailReviewTable {
+    width: 80%;
+    margin-left: 5%;
+}
+
+#detailsReviewProfileImage {
+    max-height: 3em;
+    max-width: 3em;
+}
+
+#detailReviewOptionsDiv {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+#editCompanyInfoButton {
+    margin: 1em;
+    float: right;
+}
+
+#companyInfoDiv {
+    display: inline-block;
+}
+
+#descriptionsDiv {
+    padding-top: 1em;
+    margin-top: 1em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+}
+
+#highConcept {
+    margin-top: 3em;
+    margin-left: 2em;
+    font-size: 1.3em;
+    font-weight: normal;
+}
+
+#incubeeDescription {
+    width: 3em;
+    height: 15%;
+    resize: none;
+    margin-left: 2em;
+}
+
+#companyReviewsDiv {
+    border-top: 1px solid #ccc;
+    padding-top: 1.5em
+}
+
+#submitReviewButton {
+    margin-top: 1em;
+
+}
+
+#incubeeDescription {
+    width: 70%;
+}
+
+#pageContentBody {
+    background-color: #eee;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*incubeesDisplayState*/
+#incubeesDiv {
+    margin-top: 6em;
+    margin-left: 6em;
+}
+
+#incubeeDisplayDiv {
+    margin: 2em;
+    height: 100%;
+    max-width: 100%;
+    /*image is set for testing*/
+    /*background-image: url('/app/img/one_light.jpg');*/
+    background-repeat: no-repeat;
+    background-size: 150%;
+    background-position: top;
+    border: 1px solid #ccc;
+    border-radius: 0.75em;
+    padding: 0em !important;
+}
+
+#incubeeHeaderDiv {
+    background: -webkit-linear-gradient(transparent, black);
+    position: relative;
+    margin-top: 12em;
+    height: 20%;
+    max-width: 100%;
+    min-width: 100%;
+    color: white;
+    margin-left: 0px;
+}
+
+#likeButton {
+    background-color: transparent;
+    color: red;
+}
+
+#incubeeDetailsDiv {
+    position: relative;
+    background-color: black;
+    color: #ccc;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+#viewMoreButton {
+    width: 100%;
+    background-color: #07947a;
+    color: white;
+    height: 4em;
+    border-bottom-right-radius: 0.75em;
+    border-bottom-left-radius: 0.75em;
+    border-top-right-radius: 0em;
+    border-top-left-radius: 0em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Signin Page*/
+
+#googleButtonsDiv {
+    margin-top: 25%;
+    margin-left: 33%;
+}
+
+#googleSignupButton,
+#googleSigninButton {
+    margin-left: 15%;
+    /*margin-top: 1em;
+	margin-top: 2em;*/
+}
+
+.loginBtn {
+    box-sizing: border-box;
+    position: relative;
+    /* width: 13em;  - apply for fixed size */
+    margin: 0.2em;
+    padding: 0 15px 0 46px;
+    border: none;
+    text-align: left;
+    line-height: 34px;
+    white-space: nowrap;
+    border-radius: 0.2em;
+    font-size: 16px;
+    color: #FFF;
+}
+
+.loginBtn:before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 34px;
+    height: 100%;
+}
+
+.loginBtn:focus {
+    outline: none;
+}
+
+.loginBtn:active {
+    box-shadow: inset 0 0 0 32px rgba(0, 0, 0, 0.1);
+}
+
+.loginBtn--google {
+    /*font-family: "Roboto", Roboto, arial, sans-serif;*/
+    background: #DD4B39;
+}
+
+.loginBtn--google:before {
+    border-right: #BB3F30 1px solid;
+    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png') 6px 6px no-repeat;
+}
+
+.loginBtn--google:hover,
+.loginBtn--google:focus {
+    background: #E74B37;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Signup Page*/
+
+#signupDiv {
+    margin-top: 3%;
+    margin-bottom: 2%;
+    margin-left: 25%;
+    width: 50%;
+    padding: 1em 1em 4em 1em;
+    background-color: white;
+    /*padding-bottom: 1em;*/
+    border-radius: 1em;
+    box-shadow: 0 0 20px #ccc;
+}
+
+#signupObjectLabel {
+    margin-bottom: 1.5em;
+    float: left;
+    width: 120px;
+}
+
+#signupObject {
+    margin-left: 3em;
+}
+
+#signupObjectDiv {
+    overflow: hidden;
+    margin-bottom: 5px;
+    display: inline-block;
+    width: 100%;
+}
+
+#highConceptTextAreaSignup,
+#companyDescriptionSignup {
+    height: 7em;
+    margin-left: 3em;
+    width: 75%;
+}
+
+#signupObject {
+    width: 75%;
+}
+
+#signupButton {
+    float: right;
+    margin-right: 2em;
+}
+
+#cancelSignup {
+    float: left;
+    margin-left: 2em;
+}
+
+#signupH1 {
+    padding-bottom: .5em;
+}
+
+#signupImagepreview {
+    border: 1px solid #ccc;
+}
+
+
+/*Nav Bar*/
+
+#TopNavUl {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, .9);
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    height: 5em;
+    border-bottom: 3px solid #07947a;
+    z-index: 5;
+}
+
+#navItemLeft {
+    float: left;
+}
+
+#navItemRight {
+    float: right;
+    cursor: pointer;
+}
+
+#navItemLeft #navItemAnchorLeft,
+#navItemAnchorRight {
+    display: block;
+    color: #07947a;
+    text-align: center;
+    font-size: 1.5em;
+    padding: 1.3em .9em;
+    text-decoration: none;
+}
+
+#logoutYesButton {
+    float: left;
+}
+
+#logoutNoButton {
+    float: right;
+}
+
+#logoutNoButton, #logoutYesButton {
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+.modal-header{
+    border-bottom: 0px !important;
+}
+

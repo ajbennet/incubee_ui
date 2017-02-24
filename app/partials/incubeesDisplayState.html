@@ -1,0 +1,22 @@
+<!-- container to display incubees -->
+<div class="row" ng-cloak>
+    <ul id="incubeesDiv" ng-repeat="customers in vm.customersArray | orderBy:'incubeeDetails.data.company_name'">
+        <div id="incubeeDisplayDiv" class="col-sm-3" style="background-image:url('{{customers.incubeeDetails.data.images[0]}}'); overflow: hidden;">
+            <div id="incubeeHeaderDiv">
+                <font size="5">{{customers.incubeeDetails.data.company_name}}</font>
+                </br>
+                <label>{{customers.averageRating}}/5 ( {{customers.numberOfRatings}} Reviews )</label>
+                <button class="btn" id="likeButton" ng-click="vm.unlike(customers.incubeeDetails.data.id)">Liked</button>
+                </br>
+                <font size="2.5">{{customers.incubeeDetails.data.founder}}</font>
+            </div>
+            <div id="incubeeDetailsDiv">
+                <p id="incubeeDescriptionDispaly">{{customers.incubeeDescription}}</p>
+                <br/>
+            </div>
+            <div>
+                <button id="viewMoreButton" class="btn" ui-sref="/incubeeDetailsState({incubeeId: '{{customers.incubeeDetails.data.id}}'})">View More</button>
+            </div>
+        </div>
+    </ul>
+</div>

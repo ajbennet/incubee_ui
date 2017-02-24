@@ -1,0 +1,60 @@
+<div id="signupDiv" ng-cloak>
+    <div id="signupContentDiv">
+        <h1 id="signupH1">Company Signup</h1>
+        <div id="signupObjectDiv">
+            <label id="signupObjectLabel">Company Name</label>
+            <input id="signupObject" ng-model="vm.companyName" type="text" name="companyName" placeholder="Company Name">
+        </div>
+        <div id="signupObjectDiv">
+            <label id="signupObjectLabel">URL</label>
+            <input id="signupObject" ng-model="vm.companyUrl" type="text" name="companyUrl" placeholder="Company URL">
+        </div>
+        <div>
+            <div id="signupImagepreview"></div>
+            <label id="signupObjectLabel">Images</label>
+            <input type="file" ng-model="picFile" custom-on-change="vm.uploadMultipleFiles" multiple>
+        </div>
+        <div id="signupObjectDiv">
+            <label id="signupObjectLabel">High Concept</label>
+            <textarea id="highConceptTextAreaSignup" ng-model="vm.highConcept" placeholder="High Concept or a brief description"></textarea>
+        </div>
+        <div id="signupObjectDiv">
+            <label id="signupObjectLabel">Company/Product Description</label>
+            <textarea id="companyDescriptionSignup" ng-model="vm.description" placeholder="Description about the company/product"></textarea>
+        </div>
+        <div id="signupObjectDiv">
+            <label id="signupObjectLabel">Twitter</label>
+            <input id="signupObject" ng-model="vm.twitterUrl" type="ulr" name="twitterSignup" placeholder="Twitter URL">
+        </div>
+        <div id="signupObjectDiv">
+            <label id="signupObjectLabel">Video</label>
+            <input id="signupObject" ng-model="vm.videoUrl" type="ulr" name="videoSignup" placeholder="Video URL">
+        </div>
+        <div id="signupObjectDiv">
+            <label id="signupObjectLabel">Location</label>
+            <input id="signupObject" ng-model="vm.location" type="text" name="locationSignup" placeholder="Location">
+        </div>
+        <div id="signupObjectDiv">
+            <label id="signupObjectLabel">Founder Information</label>
+            <input id="signupObject" ng-model="vm.founderInfo" type="text" name="aboutFounderInfoSignup" placeholder="Information about the founder">
+        </div>
+        <div id="signupObjectDiv">
+            <label id="signupObjectLabel">Filed</label>
+            <input id="signupObject" ng-model="vm.field" type="text" name="fieldSignup" placeholder="Field">
+        </div>
+        <div id="signupObjectDiv">
+            <label id="signupObjectLabel">Startup Phase</label>
+            <select id="signupObject" ng-model="vm.phase">
+                <option ng-repeat="option in vm.startupPhaseOptions" value="{{option}}">{{option}}</option>
+            </select>
+        </div>
+        <div id="signupObjectDiv">
+            <label id="signupObjectLabel">Seek Funding</label>
+            <select id="signupObject" ng-model="vm.funding">
+                <option ng-repeat="fundingOption in vm.seekFundingOptions" value="{{fundingOption}}">{{fundingOption}}</option>
+            </select>
+        </div>
+        <button id="signupButton" class="btn btn-success" ng-click="vm.signupIncubee(vm.companyName, vm.companyUrl, vm.companyLogo, vm.highConcept, vm.description, vm.twitterUrl, vm.videoUrl, vm.location, vm.founderInfo, vm.field, vm.phase, vm.funding)">{{vm.uploadButtonText}}</button>
+        <button id="cancelSignup" class="btn btn-danger" ng-click="vm.cancelSignup()" ui-sref="{{vm.cancelDestination}}">Cancel</button>
+    </div>
+</div>
