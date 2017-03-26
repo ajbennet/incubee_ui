@@ -5,10 +5,10 @@
         .module('app')
         .controller('InvestorController', InvestorController);
 
-    InvestorController.$inject = ["InvestorService", '$window', 'localStorageService', 'CompanyService'];
+    InvestorController.$inject = ["InvestorService", '$window', 'localStorageService', '$state'];
 
     /* @ngInject */
-    function InvestorController(InvestorService, $window, localStorageService, CompanyService) {
+    function InvestorController(InvestorService, $window, localStorageService, $state) {
         var vm = this;
         vm.title = 'InvestorController';
         vm.customersArray = [];
@@ -48,6 +48,7 @@
                 })
             } else {
                 console.log("You are not logged in");
+                $state.go('/signinState');
             }
         }
     }

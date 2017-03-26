@@ -5,10 +5,10 @@
         .module('app')
         .controller('IncubeeDetailsController', IncubeeDetailsController);
 
-    IncubeeDetailsController.$inject = ['$stateParams', '$window', 'InvestorService', 'IncubeeDetailsService', 'localStorageService'];
+    IncubeeDetailsController.$inject = ['$stateParams', '$window', 'InvestorService', 'IncubeeDetailsService', 'localStorageService', '$state'];
 
     /* @ngInject */
-    function IncubeeDetailsController($stateParams, $window, InvestorService, IncubeeDetailsService, localStorageService) {
+    function IncubeeDetailsController($stateParams, $window, InvestorService, IncubeeDetailsService, localStorageService, $state) {
         var vm = this;
         vm.title = 'IncubeeDetailsController';
         vm.incubeeDetailsArray = [];
@@ -20,43 +20,49 @@
         vm.ratingLabel;
         vm.selectedPerColor = "white";
         vm.selectedPhoColor = "white";
+        vm.incubeeId;
 
         activate();
 
         ////////////////
 
         function activate() {
+            if (localStorageService.get("loggedin") == true) {
+                vm.incubeeId = localStorageService.get('incubeeId');
+                vm.investor = localStorageService.get('investor');
+                console.log(vm.investor);
 
-            vm.investor = localStorageService.get('investor');
-            console.log(vm.investor);
+                InvestorService.getIncubeeById($stateParams.incubeeId).then(function(response) {
 
-            InvestorService.getIncubeeById($stateParams.incubeeId).then(function(response) {
+                    vm.incubeeDetailsArray = response;
+                    console.log(vm.incubeeDetailsArray);
+                    if (vm.incubeeDetailsArray[1].data.reviews.length > 1) {
+                        vm.ratingLabel = "ratings";
+                    } else {
+                        vm.ratingLabel = "rating";
+                    }
+                    for (var i = 0; i < vm.incubeeDetailsArray[1].data.reviews.length; i++) {
+                        console.log(vm.incubeeDetailsArray[1].data.reviews[i].user_id);
 
-                vm.incubeeDetailsArray = response;
-                console.log(vm.incubeeDetailsArray);
-                if (vm.incubeeDetailsArray[1].data.reviews.length > 1) {
-                    vm.ratingLabel = "ratings";
-                } else {
-                    vm.ratingLabel = "rating";
-                }
-                for (var i = 0; i < vm.incubeeDetailsArray[1].data.reviews.length; i++) {
-                    console.log(vm.incubeeDetailsArray[1].data.reviews[i].user_id);
+                        IncubeeDetailsService.getReviewers(vm.incubeeDetailsArray[1].data.reviews[i].user_id).then(function(response) {
+                            console.log(response);
+                            if (response.image_url == null) {
 
-                    IncubeeDetailsService.getReviewers(vm.incubeeDetailsArray[1].data.reviews[i].user_id).then(function(response) {
-                        console.log(response);
-                        if (response.image_url == null) {
+                                response.image_url = '/app/img/profilePlaceholder.jpg';
+                            }
+                            vm.reviewNamesArray.push(response);
 
-                            response.image_url = '/app/img/profilePlaceholder.jpg';
-                        }
-                        vm.reviewNamesArray.push(response);
+                        });
+                    }
+                    console.log(vm.reviewNamesArray);
 
-                    });
-                }
-                console.log(vm.reviewNamesArray);
+                    console.log(vm.incubeeDetailsArray[0].data.images.length);
 
-                console.log(vm.incubeeDetailsArray[0].data.images.length);
-
-            });
+                });
+            } else {
+                console.log("You are not logged in");
+                $state.go('/signinState');
+            }
         }
 
         vm.showCompanyWebsite = function(companyUrl) {

@@ -1,3 +1,167 @@
+/*homePageState*/
+#homePage #homeTop, #homePage #getAppDiv {
+    height: 100vh;
+}
+#homePage #homeTop {
+  background: #50947a;
+
+}
+#homePage #homeTop #phoneImage{
+    position: absolute;
+    bottom: 0;
+    margin-bottom: -5em;
+}
+#homePage #homeTop h1{
+    color: #fff;
+    font-weight: 200;
+}
+#homePage #homeTop h3{
+    color: #fff;
+    font-weight: 100;
+}
+#homePage #homeTop button{
+    border-radius: 2em;
+    background-color: #ccc;
+    color: #fff;
+}
+#homePage #featureDiv, #homePage #screensDiv{
+    height: 120vh;
+    background-color: #fff;
+}
+#homePage #featureDiv h1, #homePage #screensDiv h1{
+    color: #666;
+    text-align: center;
+    padding-top: 1em;
+    margin: 0em;
+    font-size: 55px;
+    font-weight: 300;
+}
+#homePage #featureDiv p, #homePage #screensDiv p{
+    font-size: 25px;
+    font-weight: 300;
+    color: #999;
+    text-align: center;
+}
+#homePage #featureDiv img{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 5em;
+}
+#homePage #reviewsDiv {
+    background-color: #ccc;
+    height: 80vh;
+}
+#homePage #reviewsDiv h1, #homePage #getAppDiv h1{
+    text-align: center;
+    padding-top: 1em;
+    margin: 0em;
+    font-size: 55px;
+    font-weight: 300;
+    color: #07947a;
+}
+#homePage #reviewsDiv p, #homePage #getAppDiv p{
+    font-size: 25px;
+    font-weight: 300;
+    color: #07947a;
+    text-align: center;
+}
+#homePage #reviewsDiv #singleReviewDiv{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 50%;
+}
+#homePage #reviewsDiv #singleReviewDiv img{
+    border: 3px solid #07947a;
+    height: 8em;
+    border-radius: 4em;
+
+}
+#homePage #reviewsDiv #singleReviewDiv #reviewTextDiv{
+    background-color: #fff;
+    width: 80%;
+    height: 6em;
+    border-radius: 1em;
+    margin-right: 1em;
+    float: right;
+    margin-top: 1em;
+}
+#homePage #reviewsDiv #singleReviewDiv #reviewTextDiv h3{
+    color: #07947a;
+    margin: 0.3em;
+    font-weight: 200;
+}
+#homePage #reviewsDiv #singleReviewDiv #reviewTextDiv p{
+    font-size: 16px;
+    color: #999;
+    float: left;
+    margin-left: 0.3em;
+    bottom: 0;
+}
+#homePage #screensDiv {
+    background-color: #fff;
+}
+#homePage #screensDiv #buttonDiv{
+    display: table;
+    margin: 0 auto;
+    padding-top: 3em;
+
+}
+#homePage #screensDiv #imageButton{
+    border: 2px solid #cccccc;
+    color: #999;
+    background-color: #fff;
+    border-radius: 2em;
+    margin: 0.5em;
+}
+#homePage #getAppDiv {
+    background-color: #ccc;
+}
+#homePage #getAppDiv button{
+    color: #07947a;
+    border-radius: 2em;
+    background-color: transparent;
+    border: 2px solid #07947a;
+}
+#homePage #footer{
+    height: 50vh;
+    background: #50947a; 
+}
+#homePage #footer h1{
+    color: #fff;
+    font-weight: 100;
+    text-align: center;
+}
+#homePage #footer button{
+    height: 4em;
+    width: 4em;
+    background-color: transparent;
+    border: 2px solid #fff;
+    border-radius: 2em;
+    color: #fff;
+    margin: 0.5em;
+}
+#homePage #footer #buttonDiv {
+    display: table;
+    margin: 0 auto;
+    padding-top: 3em;
+}
+#homePage #footer p{
+    color: #fff;
+    font-weight: 100;
+    text-align: center;
+    margin-top: 1em;
+}
+
+
+
+
+
+
+
+
+
 
 /*incubeeDetailsState*/
 #detailPageDiv {
@@ -11,7 +175,7 @@
     height: 90%;
     background-color: #fff;
     box-shadow: 0 0 20px #ccc;
-    border-radius: .3em;
+    border-radius: 0.75em;
     margin-bottom: 5em;
 }
 
@@ -90,6 +254,9 @@
 #editCompanyInfoButton {
     margin: 1em;
     float: right;
+    color: red;
+    background-color: transparent;
+    border-color: red;
 }
 
 #companyInfoDiv {
@@ -175,12 +342,14 @@
     border: 1px solid #ccc;
     border-radius: 0.75em;
     padding: 0em !important;
+    box-shadow: 0 0 20px #ccc;
+    height: 25em;
 }
 
 #incubeeHeaderDiv {
     background: -webkit-linear-gradient(transparent, black);
     position: relative;
-    margin-top: 12em;
+    margin-top: 9em;
     height: 20%;
     max-width: 100%;
     min-width: 100%;
@@ -199,6 +368,11 @@
     color: #ccc;
     padding-left: 1em;
     padding-right: 1em;
+    padding-bottom: .1em;
+    display: block;
+    flex-wrap: wrap;
+    bottom: 0;
+    height: 100em;
 }
 
 #viewMoreButton {
@@ -210,11 +384,10 @@
     border-bottom-left-radius: 0.75em;
     border-top-right-radius: 0em;
     border-top-left-radius: 0em;
+    position: absolute;
+    bottom: 0;
+
 }
-
-
-
-
 
 
 
@@ -232,6 +405,11 @@
 
 
 /*Signin Page*/
+
+#incubeeHomePageTitle {
+    text-align: center;
+    font-size: 36px;
+}
 
 #googleButtonsDiv {
     margin-top: 25%;
@@ -318,7 +496,7 @@
     padding: 1em 1em 4em 1em;
     background-color: white;
     /*padding-bottom: 1em;*/
-    border-radius: 1em;
+    border-radius: 0.75em;
     box-shadow: 0 0 20px #ccc;
 }
 
@@ -419,5 +597,10 @@
 
 .modal-header{
     border-bottom: 0px !important;
+}
+
+.modal-header h4{
+    text-align: center;
+    padding-bottom: 2em;
 }
 

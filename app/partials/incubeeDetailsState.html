@@ -5,7 +5,7 @@
                 <img id="incubeeDetailLogoImage" src="{{vm.incubeeDetailsArray[0].data.images[0]}}">
                 <font id="incubeeDetailTitle">{{vm.incubeeDetailsArray[0].data.company_name}}</font>
                 <font ng-show="vm.investor" id="detailRatingsLabel">{{vm.incubeeDetailsArray[1].data.reviewData.averageRating}}/5 ({{vm.incubeeDetailsArray[1].data.reviewData.noOfRatings}} {{vm.ratingLabel}})</font>
-                <button ng-hide="vm.investor" id="editCompanyInfoButton" class="btn" ui-sref="/signupState({incubeeId: 'This is a test'})">Edit Company Information</button>
+                <button ng-hide="vm.investor" id="editCompanyInfoButton" class="btn" ui-sref="/signupState({incubeeId: '{{vm.incubeeId}}'})">Edit Info</button>
                 </br>
                 <div id="companyInfoDiv">
                     <label id="detailWebsiteLabel" class="btn" ng-click="vm.showCompanyWebsite(vm.incubeeDetailsArray[0].data.company_url)">{{vm.incubeeDetailsArray[0].data.company_url}}</label>
