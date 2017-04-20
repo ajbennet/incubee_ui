@@ -36,6 +36,12 @@
             console.log(data);
 
             var fd = new FormData();
+                        // if (data.images.length > 1 || data.images.length == null) {
+                for(var i =0; i < data.images.length; i++){
+                    fd.append("images", data.images[i].item);
+                    console.log(data.images[i].item);
+                }
+            // }
             for(var key in data)
                 fd.append(key,data[key]);
             return $http.post('http://www.incub.ee/rest/handle', fd, {

@@ -48,7 +48,7 @@
                 })
             } else {
                 console.log("You are not logged in");
-                $state.go('/signinState');
+                // $state.go('/signinState');
             }
         }
     }

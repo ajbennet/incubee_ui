@@ -26,6 +26,12 @@
                         </li>
                     </ul>
                 </div>
+                <video width="400" controls id="videoId">
+                    <source src="{{vm.video}}" type=video/webm>
+                    <source src="{{vm.video}}" type=video/ogg>
+                    <source src="{{vm.video}}" type=video/mp4>
+                    <source src="{{vm.video}}" type=video/3gp>
+                </video>
                 <div id="incubeeDescription">
                     <font>{{vm.incubeeDetailsArray[0].data.description}}</font>
                 </div>

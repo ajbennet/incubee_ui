@@ -1,17 +1,106 @@
 <div id="homePage">
     <div id='homeTop'>
-        <h1>incubee</h1>
-        <h3>A startup hive</h3>
+        <img id="logoImg" src="app/img/logo.png">
         <img id="phoneImage" src="/app/img/hand-freeze.png">
-        <button class="btn">Get App</button>
+        <div id="homeHeadlinesDiv">
+            <h1>incubee</h1>
+            <h3>A startup hive</h3>
+            <button class="btn" ng-click="vm.appStore()">Get App</button>
+        </div>
     </div>
     <div id='featureDiv'>
         <h1>Feature</h1>
+        <div id="divider"></div>
         <p>Promote your startup/product on incubee</p>
-        <img id="phoneImage" src="/app/img/iphone-freeze.png">
+        <div id="featuresContent">
+            <div id="leftFeatures" class="col-md-4 col-sm-4 scrollpoint sp-effect1 active animated fadeInLeft">
+                <div class="media media-left feature">
+                    <a class="pull-right" href="#"> <i class="fa fa-cogs fa-2x"></i>
+                    </a>
+                    <div class="media-body">
+                        <h3 class="media-heading">User Settings</h3> Personalized setting for every user
+                    </div>
+                </div>
+                </br>
+                <div class="media media-left feature">
+                    <a class="pull-right" href="#"> <i class="fa fa-envelope fa-2x"></i>
+                    </a>
+                    <div class="media-body">
+                        <h3 class="media-heading">Messages Inbox</h3> Messages from real users about your product
+                    </div>
+                </div>
+                </br>
+                <div class="media media-left feature">
+                    <a class="pull-right" href="#"> <i class="fa fa-users fa-2x"></i>
+                    </a>
+                    <div class="media-body">
+                        <h3 class="media-heading">User Feedback</h3> Get user feedback even before your startup hits market.
+                    </div>
+                </div>
+                </br>
+                <div class="media media-left feature">
+                    <a class="pull-right" href="#"> <i class="fa fa-comments fa-2x"></i>
+                    </a>
+                    <div class="media-body">
+                        <h3 class="media-heading">Live Chat Messages</h3> Live chat with the founders
+                    </div>
+                </div>
+                </br>
+                <div class="media media-left feature">
+                    <a class="pull-right" href="#"> <i class="fa fa-search fa-2x"></i>
+                    </a>
+                    <div class="media-body">
+                        <h3 class="media-heading">Search</h3> Search for startups of interest.
+                    </div>
+                </div>
+            </div>
+            <img id="phoneImage" src="/app/img/iphone-freeze.png">
+            <div id="rightFeatures" class="col-md-4 col-sm-4 scrollpoint sp-effect2 active animated fadeInRight">
+                <div class="media feature">
+                    <a class="pull-left" href="#"> <i class="fa fa-map-marker fa-2x"></i>
+                    </a>
+                    <div class="media-body">
+                        <h3 class="media-heading">Location based Search</h3> Look for startups in a particular location
+                    </div>
+                </div>
+                </br>
+                <div class="media feature">
+                    <a class="pull-left" href="#"> <i class="fa fa-film fa-2x"></i>
+                    </a>
+                    <div class="media-body">
+                        <h3 class="media-heading">Video Pitch</h3> Upload a video pitch for the startup
+                    </div>
+                </div>
+                </br>
+                <div class="media feature">
+                    <a class="pull-left" href="#"> <i class="fa fa-compass fa-2x"></i>
+                    </a>
+                    <div class="media-body">
+                        <h3 class="media-heading">Intuitive Statistics</h3> Get user statistics that can help drive your startup direction.
+                    </div>
+                </div>
+                </br>
+                <div class="media feature">
+                    <a class="pull-left" href="#"> <i class="fa fa-share-alt fa-2x"></i>
+                    </a>
+                    <div class="media-body">
+                        <h3 class="media-heading">Share</h3> Share the startups you like in your social media.
+                    </div>
+                </div>
+                </br>
+                <div class="media active feature">
+                    <a class="pull-left" href="#"> <i class="fa fa-plus fa-2x"></i>
+                    </a>
+                    <div class="media-body">
+                        <h3 class="media-heading">And much more!</h3> Lots more features to come.
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div id='reviewsDiv'>
         <h1>Reviews</h1>
+        <div id="divider"></div>
         <p>Read What's The People Are Saying About Us</p>
         <div id="singleReviewDiv">
             <img src="/app/img/profilePlaceholder.jpg">
@@ -23,25 +112,105 @@
     </div>
     <div id='screensDiv'>
         <h1>Screens</h1>
+        <div id="divider"></div>
         <p>See what’s included in the App</p>
         <div id="buttonDiv">
             <button id="imageButton" class="btn">ALL SCREENS</button>
             <button id="imageButton" class="btn">USER PROFILE</button>
             <button id="imageButton" class="btn">MESSAGES</button>
         </div>
+        <div class="slider filtering scrollpoint sp-effect5 slick-initialized slick-slider active animated fadeInUp">
+            <div class="slick-list draggable" tabindex="0">
+                <div class="slick-track">
+                    <div class="three slick-slide slick-cloned" style="width: 285px;">
+                        <img src="/app/img/login.jpg" alt="">
+                        <h4>Login</h4>
+                    </div>
+                    <div class="one slick-slide slick-cloned" style="width: 285px;">
+                        <img src="/app/img/profile.jpg" alt="">
+                        <h4>Profile</h4>
+                    </div>
+                    <div class="one slick-slide slick-cloned" style="width: 285px;">
+                        <img src="/app/img/location.jpg" alt="">
+                        <h4>Location</h4>
+                    </div>
+                    <div class="two slick-slide slick-cloned" style="width: 285px;">
+                        <img src="/app/img/report.jpg" alt="">
+                        <h4>Report</h4>
+                    </div>
+                    <div class="one slick-slide slick-active" style="width: 285px;">
+                        <img src="/app/img/home.jpg" alt="">
+                        <h4>Home</h4>
+                    </div>
+                    <div class="two slick-slide slick-active" style="width: 285px;">
+                        <img src="/app/img/ftue.jpg" alt="">
+                        <h4>Tutorial</h4>
+                    </div>
+                    <div class="three slick-slide slick-active" style="width: 285px;">
+                        <img src="/app/img/login.jpg" alt="">
+                        <h4>Login</h4>
+                    </div>
+                    <div class="one slick-slide slick-active" style="width: 285px;">
+                        <img src="/app/img/profile.jpg" alt="">
+                        <h4>Profile</h4>
+                    </div>
+                    <div class="one slick-slide" style="width: 285px;">
+                        <img src="/app/img/location.jpg" alt="">
+                        <h4>Location</h4>
+                    </div>
+                    <div class="two slick-slide" style="width: 285px;">
+                        <img src="/app/img/report.jpg" alt="">
+                        <h4>Report</h4>
+                    </div>
+                    <div class="one slick-slide slick-cloned" style="width: 285px;">
+                        <img src="/app/img/home.jpg" alt="">
+                        <h4>Home</h4>
+                    </div>
+                    <div class="two slick-slide slick-cloned" style="width: 285px;">
+                        <img src="/app/img/ftue.jpg" alt="">
+                        <h4>Tutorial</h4>
+                    </div>
+                    <div class="three slick-slide slick-cloned" style="width: 285px;">
+                        <img src="/app/img/login.jpg" alt="">
+                        <h4>Login</h4>
+                    </div>
+                    <div class="one slick-slide slick-cloned" style="width: 285px;">
+                        <img src="/app/img/profile.jpg" alt="">
+                        <h4>Profile</h4>
+                    </div>
+                </div>
+<!--                 <button type="button" class="slick-prev" style="display: block;">Previous</button>
+                <button type="button" class="slick-next" style="display: block;">Next</button> -->
+            </div>
+        </div>
     </div>
     <div id='getAppDiv'>
         <h1>Get App</h1>
+        <div id="divider"></div>
         <p>Choose your native platform and get started!</p>
-        <button class="btn">Download for Android</button>
-        <button class="btn">Download for Apple iOS</button>
+        <div id="getAppButtonsDiv">
+            <button class="btn" ng-click="vm.appStore('android')"><i class="fa fa-android fa-3x pull-left"></i><span>Download For</span>
+                <br/>Android</button>
+            <button class="btn" ng-click="vm.appStore('apple')"><i class="fa fa-apple fa-3x pull-left"></i><span>Download For</span>
+                <br/>Apple iOS</button>
+        </div>
+        <div id="imageDiv">
+            <img src="app/img/angled.png">
+        </div>
+    </div>
+    <div id="signUpHomeDiv">
+        <h1>Sign-up</h1>
+        <div id="divider"></div>
+        <div id="buttonDiv">
+            <button ui-sref="/signupState" class="btn">Bring your startup to incubee</button>            
+        </div>
     </div>
     <div id='footer'>
-        <h1>incub.ee</h1>
+        <img id="logoImg" src="app/img/logo.png">
         <div id="buttonDiv">
-	        <button class="btn">G</button>
-	        <button class="btn">FB</button>
-	        <button class="btn">TW</button>
+            <button class="btn"><i class="fa fa-twitter fa-lg"></i></button>
+            <button class="btn"><i class="fa fa-google-plus fa-lg"></i></button>
+            <button class="btn"><i class="fa fa-facebook fa-lg"></i></button>
         </div>
         <p>Copyright © 2015</p>
     </div>

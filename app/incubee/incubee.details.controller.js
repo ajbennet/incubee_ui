@@ -16,7 +16,13 @@
         vm.selectedRowIndex = "";
         vm.meeting = "";
         vm.reviewNamesArray = [];
+        vm.video;
+
+        
+        // vm.investor = true;
         vm.investor;
+
+
         vm.ratingLabel;
         vm.selectedPerColor = "white";
         vm.selectedPhoColor = "white";
@@ -29,13 +35,23 @@
         function activate() {
             if (localStorageService.get("loggedin") == true) {
                 vm.incubeeId = localStorageService.get('incubeeId');
-                vm.investor = localStorageService.get('investor');
-                console.log(vm.investor);
 
+
+
+
+                vm.investor = localStorageService.get('investor');
+
+
+
+
+                console.log(vm.investor);
                 InvestorService.getIncubeeById($stateParams.incubeeId).then(function(response) {
 
                     vm.incubeeDetailsArray = response;
                     console.log(vm.incubeeDetailsArray);
+                    console.log();
+                    vm.video = vm.incubeeDetailsArray[0].data.video;
+                    videoId.load();
                     if (vm.incubeeDetailsArray[1].data.reviews.length > 1) {
                         vm.ratingLabel = "ratings";
                     } else {
@@ -56,7 +72,7 @@
                     }
                     console.log(vm.reviewNamesArray);
 
-                    console.log(vm.incubeeDetailsArray[0].data.images.length);
+                    console.log(vm.incubeeDetailsArray[0].data.images);
 
                 });
             } else {

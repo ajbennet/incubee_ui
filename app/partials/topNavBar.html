@@ -1,17 +1,19 @@
 <ul id="TopNavUl">
-    <li id="navItemLeft"><a id="navItemAnchorLeft" class="active" ui-sref="{{vm.homeDestination}}">Incubee</a></li>
-    <li id="navItemLeft"><a id="navItemAnchorLeft" style="color:black;">{{vm.name}}</a></li>
-    <li id="navItemRight"><a id="navItemAnchorRight" data-toggle="modal" id="leaveReviewButton" data-target="#logoutModal">Logout</a></li>
+    <li id="navItemLeft"><a id="navItemAnchorLeft" class="active" ui-sref="/homePageState">Incubee</a></li>
+    <li id="navItemRight"><a id="navItemAnchorRight" data-toggle="modal" id="leaveReviewButton" data-target="#logoutModal" ng-click="vm.loginOutButtonPress()">{{vm.login}}</a></li>
+        <li id="navItemRight" ng-show="vm.showNavImg"><img src="{{vm.userImage}}"></a></li>
+    <li id="navItemRight"><a id="navItemAnchorLeft" style="color:black;" ng-click="vm.viewProfile()">{{vm.name}}</a></li>
 </ul>
 <div class="modal fade" id="logoutModal" role="dialog">
     <div class="modal-dialog modal-sm">
         <div class="modal-content" id="modalDetails">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Logout?</h4>
-                <button id="logoutYesButton" class="btn btn-success" data-dismiss="modal" ng-click="vm.logout()">Yes</button>
+                <h4 class="modal-title">{{vm.loginTitle}}</h4>
+                <button id="logoutYesButton" class="btn btn-success" data-dismiss="modal" ng-click="vm.logout()" ng-show="vm.signin">Yes</button>
+                <button id="googleSigninButton" class="loginBtn loginBtn--google" ng-click="vm.signIn()" ng-hide="vm.signin" data-dismiss="modal">Google SignIn</button>
                 <button id="logoutNoButton" class="btn" data-dismiss="modal">No</button>
             </div>
-        </div>    
+        </div>
     </div>
 </div>

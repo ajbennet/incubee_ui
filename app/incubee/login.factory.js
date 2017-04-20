@@ -43,7 +43,7 @@
 		                            localStorageService.set("investor_id", response.config.data.id);
 		                            if (response.data.servicedata.user_type == "I") {
 		                            	console.log(response.data.servicedata.user_type);
-										localStorageService.set("investor", true);
+										localStorageService.set('investor', true);
 										$state.go('/incubeesDisplayState');
 		                            } else {
 		                            	localStorageService.set("investor", false);

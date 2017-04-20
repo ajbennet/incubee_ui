@@ -3,17 +3,55 @@
 
     var app = angular.module('app', ['ui.router', 'google-signin', 'LocalStorageModule']);
 
-    app.directive('fileModel', ['$parse', function ($parse) {
+//****** To upload one image
+    // app.directive('fileModel', ['$parse', function ($parse) {
+    //     return {
+    //         restrict: 'A',
+    //         link: function (scope, element, attrs) {
+    //             var model = $parse(attrs.fileModel);
+    //             var modelSetter = model.assign;
+    //             element.bind('change', function(){
+    //                 scope.$apply(function(){
+    //                     modelSetter(scope, element[0].files[0]);
+    //                 })
+    //             })
+    //         }
+    //     };
+    // }])
+
+//****** To upload Multi images
+        app.directive('fileModel', ['$parse', function ($parse) {
         return {
             restrict: 'A',
             link: function (scope, element, attrs) {
                 var model = $parse(attrs.fileModel);
                 var modelSetter = model.assign;
-
                 element.bind('change', function(){
-                    scope.$apply(function(){
-                        modelSetter(scope, element[0].files[0]);
-                    })
+                    var values = [];
+                angular.forEach(element[0].files, function (item) {
+                    var value = {
+                       // File Name 
+                        // name: item.name,
+                        //File Size 
+                        // size: item.size,
+                        //File URL to view 
+                        // url: URL.createObjectURL(item),
+                        item
+                        // File Input Value 
+                        // _file: item
+                    };
+                    values.push(value);
+                });
+                scope.$apply(function () {
+                    if (values.length > 4) {
+                        alert("You are only allowed to upload up to 4 images.");
+                        values = [];
+                        return;
+                    } else{
+                            console.log(values);
+                            modelSetter(scope, values);
+                    }
+                })
                 })
             }
         };

@@ -1,34 +1,93 @@
+/*general*/
+button{
+    outline: none !important;
+}
+
 /*homePageState*/
-#homePage #homeTop, #homePage #getAppDiv {
-    height: 100vh;
+#homePage button{
+    outline: none;
+}
+#homePage #divider{
+        content: "";
+    position: relative;
+    height: 4px;
+    width: 60px;
+    display: block;
+    text-align: center;
+    margin: 13px auto;
+    -webkit-border-radius: 5em;
+    -moz-border-radius: 5em;
+    -ms-border-radius: 5em;
+    -o-border-radius: 5em;
+    border-radius: 5em;
+    background: #07947a
+}
+#homePage i{
+/*    color: red;
+    height: 300px;
+    widows: 300px;
+    font-size: 30px;
+    z-index: 400;*/
 }
 #homePage #homeTop {
-  background: #50947a;
-
+    /*height: 100vh;*/
+    height: 800px; 
+}
+#homePage #homeTop {
+  /*background: #50947a;*/
+      background: linear-gradient(-45deg, #66cdcc 0%, #07947a 100%);
+    position: relative;
+}
+#homePage #homeTop #logoImg {
+    margin-left: 15%;
 }
 #homePage #homeTop #phoneImage{
-    position: absolute;
+    /*position: absolute;
     bottom: 0;
-    margin-bottom: -5em;
+    margin-bottom: -5em;*/
+    position: absolute;
+    right: 50%;
+    z-index: 0;
+    bottom: 0;
+}
+#homePage #homeTop #homeHeadlinesDiv{
+    position: absolute;
+    right: 31%;
+    bottom: 48%;
 }
 #homePage #homeTop h1{
     color: #fff;
     font-weight: 200;
+    margin-top: 0;
+    font-size: 46px;
+    line-height: 65px;
 }
 #homePage #homeTop h3{
     color: #fff;
     font-weight: 100;
+    font-size: 46px;
+    line-height: 65px;
 }
 #homePage #homeTop button{
     border-radius: 2em;
-    background-color: #ccc;
-    color: #fff;
+    background: -webkit-linear-gradient(#ffffff 0%, #cccccc 100%);
+    background: -o-linear-gradient(#ffffff 0%, #cccccc 100%);
+    background: linear-gradient(#ffffff 0%, #cccccc 100%);
+    color: #07947a;
+    padding: 10px 25px;
+    border-top: 0;
+    border-bottom: 0;
 }
 #homePage #featureDiv, #homePage #screensDiv{
-    height: 120vh;
+    /*height: 120vh;*/
+    height: 800px; 
     background-color: #fff;
 }
-#homePage #featureDiv h1, #homePage #screensDiv h1{
+#homePage #featureDiv {
+    position: relative;
+}
+
+#homePage #featureDiv h1, #homePage #screensDiv h1, #homePage #signUpHomeDiv h1{
     color: #666;
     text-align: center;
     padding-top: 1em;
@@ -42,15 +101,65 @@
     color: #999;
     text-align: center;
 }
-#homePage #featureDiv img{
-    margin-left: auto;
-    margin-right: auto;
+#homePage #featureDiv p{
+    position: absolute;
+    right: 38%;
+    z-index: 0;
+    bottom: 72%;
+    margin-bottom: 2em;
+}
+#homePage #featureDiv #featuresContent{
+    width: 80%;
+    margin-left: 10%;
+}
+#homePage #featureDiv #leftFeatures{
+    display: block;
+    /*background-color: green;*/
+    float: left;
+    width: 33.3333333%;
+    margin-top: 5em;
+    margin-left: 60px;
+}
+.media-body{
+    color: #999;
+}
+.media-heading{
+    color: #666;
+}
+#homePage #featureDiv #rightFeatures {
+    width: 33.333333%;
+    float: right;
+    /*background-color: green;*/
     display: block;
     margin-top: 5em;
 }
+
+#homePage #featureDiv img{
+    /*position: fixed; */
+    position: absolute;
+    right: 43%;
+    z-index: 0;
+    bottom: 10%;
+}
+#homePage #featureDiv .pull-right, #homePage #featureDiv .pull-left{
+    height: 72px;
+    width: 72px;
+    border: 2px solid #07947a;
+    color: #07947a;
+    border-radius: 36px;
+    padding: 20px;
+    margin-right: 3em;
+}
+#homePage #featureDiv .pull-left {
+    margin-right: 1em;
+}
+#homePage #featureDiv .media{
+    margin-top: 0px;
+}
 #homePage #reviewsDiv {
-    background-color: #ccc;
-    height: 80vh;
+    /*background-color: #ccc;*/
+    background-image: url("../../app/img/bk-freeze.jpg");
+    height: 500px;
 }
 #homePage #reviewsDiv h1, #homePage #getAppDiv h1{
     text-align: center;
@@ -65,12 +174,14 @@
     font-weight: 300;
     color: #07947a;
     text-align: center;
+    margin-bottom: 85px;
+
 }
 #homePage #reviewsDiv #singleReviewDiv{
     margin-left: auto;
     margin-right: auto;
     display: block;
-    width: 50%;
+    width: 70%;
 }
 #homePage #reviewsDiv #singleReviewDiv img{
     border: 3px solid #07947a;
@@ -86,6 +197,7 @@
     margin-right: 1em;
     float: right;
     margin-top: 1em;
+    margin-left: 2em;
 }
 #homePage #reviewsDiv #singleReviewDiv #reviewTextDiv h3{
     color: #07947a;
@@ -106,32 +218,107 @@
     display: table;
     margin: 0 auto;
     padding-top: 3em;
-
 }
 #homePage #screensDiv #imageButton{
-    border: 2px solid #cccccc;
+    border: 2px solid #ccc;
     color: #999;
     background-color: #fff;
     border-radius: 2em;
     margin: 0.5em;
 }
+#homePage #screensDiv .slick-track{
+    display: inline-flex;
+    overflow: hidden;
+    width: 1170px;
+    margin-left: 20%;
+
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+#homePage #screensDiv .slick-slide{
+    margin-left: 6em;
+    margin-top: 3em;
+}
+#homePage #screensDiv .slick-slide img{
+    border: 2px solid #ccc;
+    border-radius: .5em;
+    padding: 1em;
+}
+#homePage #screensDiv .slick-slide h4{
+    text-align: center;
+}
 #homePage #getAppDiv {
-    background-color: #ccc;
+    /*background-color: #ccc;*/
+    background-image: url("../../app/img/bk-freeze.jpg");
+    height: 450px;
+    position: relative;
+}
+#homePage #getAppDiv #getAppButtonsDiv {
+    margin-left: 3em;
+    margin-top: 200px;
 }
 #homePage #getAppDiv button{
     color: #07947a;
     border-radius: 2em;
     background-color: transparent;
     border: 2px solid #07947a;
+    font-weight: 800;
+    width: 180px;
+    height: 48px;
+    text-align: right;
+    padding:0px 12px;
+}
+#homePage #getAppDiv button span{
+    font-weight: 200;
+}
+#homePage #getAppDiv button:hover{
+    color: #fff;
+    background-color: #07947a;
+}
+#homePage #getAppDiv #imageDiv {
+    position: absolute;
+    right: 0;
+    z-index: 0;
+    bottom: 0;
+}
+#homePage #signUpHomeDiv{
+    height: 300px;
+    background-color: #fff;
+}
+#homePage #signUpHomeDiv #buttonDiv{
+    
+}
+#homePage #signUpHomeDiv button{
+    background-color: transparent;
+    border: 4px solid #07947a;
+    border-radius: 1em;
+    text-align: center;
+    margin:0 40%;
+    padding: 1em;
+    color: #07947a;
+    margin-top: 3em;
+    font-size: 16px;
+    width: 20%;
+}
+#homePage #signUpHomeDiv button:hover{
+    color: white;
+    background-color: #07947a;
 }
 #homePage #footer{
-    height: 50vh;
-    background: #50947a; 
+    height: 300px;
+    /*background: #50947a;*/
+    background: linear-gradient(-45deg, #66cdcc 0%, #07947a 100%);
+    z-index: 50;
+    position: relative;
 }
-#homePage #footer h1{
-    color: #fff;
-    font-weight: 100;
-    text-align: center;
+#homePage #footer img{
+    height: 3em;
+    position: absolute;
+    right: 47%;
+    z-index: 0;
+    bottom: 55%;
+    margin-bottom: 3em;
 }
 #homePage #footer button{
     height: 4em;
@@ -141,6 +328,11 @@
     border-radius: 2em;
     color: #fff;
     margin: 0.5em;
+    margin-top: 8em;
+}
+#homePage #footer button:hover{
+    color: #07947a;
+    background-color: #fff;
 }
 #homePage #footer #buttonDiv {
     display: table;
@@ -230,6 +422,8 @@
 #detailWebsiteLabel {
     padding-left: 0em;
     color: #4286f4;
+    width: 6em;
+    overflow: hidden;
 }
 
 #detailReviewLable {
@@ -301,7 +495,12 @@
 #pageContentBody {
     background-color: #eee;
 }
-
+video{
+    margin-left: 30%;
+    margin-right: auto;
+    margin-top: 3em;
+    margin-bottom: 3em;
+}
 
 
 
@@ -412,13 +611,14 @@
 }
 
 #googleButtonsDiv {
-    margin-top: 25%;
-    margin-left: 33%;
+    top: 50%;
+    position: absolute;
 }
 
 #googleSignupButton,
 #googleSigninButton {
-    margin-left: 15%;
+    float: left;
+    outline: none;
     /*margin-top: 1em;
 	margin-top: 2em;*/
 }
@@ -546,6 +746,22 @@
     border: 1px solid #ccc;
 }
 
+#singupImagesDisplayDiv{
+    display: inline-block;
+    margin-right: .5em;
+    margin-bottom: 1em;
+
+}
+
+#signupImages {
+    max-height: 17em;
+    max-width: 17em;
+    float: left;
+}
+
+
+
+
 
 /*Nav Bar*/
 
@@ -561,6 +777,7 @@
     height: 5em;
     border-bottom: 3px solid #07947a;
     z-index: 5;
+    box-shadow: 0 0 20px #fff;
 }
 
 #navItemLeft {
@@ -571,8 +788,15 @@
     float: right;
     cursor: pointer;
 }
-
+#TopNavUl img{
+    border-radius: 6em;
+    height: 3em;
+    margin-top: 1em;
+    float: right;
+    border: none;
+}
 #navItemLeft #navItemAnchorLeft,
+#navItemRight #navItemAnchorLeft,
 #navItemAnchorRight {
     display: block;
     color: #07947a;
@@ -581,13 +805,17 @@
     padding: 1.3em .9em;
     text-decoration: none;
 }
-
+#TopNavUl .active {
+    cursor: pointer;
+}
 #logoutYesButton {
     float: left;
+    outline: none;
 }
 
 #logoutNoButton {
     float: right;
+    outline: none;
 }
 
 #logoutNoButton, #logoutYesButton {
