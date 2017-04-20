@@ -67,7 +67,7 @@
             if (localStorageService.get('investor') == false) {
                 $state.go('/incubeeDetailsState',{incubeeId: localStorageService.get('incubeeId')});
             } else {
-                vm.homeDestination = "/incubeesDisplayState";
+                $state.go("/incubeesDisplayState");
             }
             
         }
