@@ -1,9 +1,9 @@
 (function() {
     'use strict';
 
-    var app = angular.module('app', ['ui.router', 'google-signin', 'LocalStorageModule']);
+    var app = angular.module('app', ['ui.router', 'google-signin', 'LocalStorageModule', 'jkAngularRatingStars']);
 
-//****** To upload one image
+    //****** To upload one image
     // app.directive('fileModel', ['$parse', function ($parse) {
     //     return {
     //         restrict: 'A',
@@ -19,39 +19,39 @@
     //     };
     // }])
 
-//****** To upload Multi images
-        app.directive('fileModel', ['$parse', function ($parse) {
+    //****** To upload Multi images
+    app.directive('fileModel', ['$parse', function($parse) {
         return {
             restrict: 'A',
-            link: function (scope, element, attrs) {
+            link: function(scope, element, attrs) {
                 var model = $parse(attrs.fileModel);
                 var modelSetter = model.assign;
-                element.bind('change', function(){
+                element.bind('change', function() {
                     var values = [];
-                angular.forEach(element[0].files, function (item) {
-                    var value = {
-                       // File Name 
-                        // name: item.name,
-                        //File Size 
-                        // size: item.size,
-                        //File URL to view 
-                        // url: URL.createObjectURL(item),
-                        item
-                        // File Input Value 
-                        // _file: item
-                    };
-                    values.push(value);
-                });
-                scope.$apply(function () {
-                    if (values.length > 4) {
-                        alert("You are only allowed to upload up to 4 images.");
-                        values = [];
-                        return;
-                    } else{
+                    angular.forEach(element[0].files, function(item) {
+                        var value = {
+                            // File Name 
+                            // name: item.name,
+                            //File Size 
+                            // size: item.size,
+                            //File URL to view 
+                            // url: URL.createObjectURL(item),
+                            item
+                            // File Input Value 
+                            // _file: item
+                        };
+                        values.push(value);
+                    });
+                    scope.$apply(function() {
+                        if (values.length > 4) {
+                            alert("You are only allowed to upload up to 4 images.");
+                            values = [];
+                            return;
+                        } else {
                             console.log(values);
                             modelSetter(scope, values);
-                    }
-                })
+                        }
+                    })
                 })
             }
         };
@@ -128,6 +128,20 @@
                     content: {
                         templateUrl: "app/partials/signupState.html",
                         controller: "SignupController",
+                        controllerAs: 'vm',
+                        data: {
+                            css: 'app/styles/styles.css'
+                        }
+                    }
+                }
+            })
+            .state('/registerState', {
+                // url: "/signupState/:incubeeId",
+                url: "/registerState",
+                views: {
+                    content: {
+                        templateUrl: "app/partials/registerState.html",
+                        controller: "RegisterController",
                         controllerAs: 'vm',
                         data: {
                             css: 'app/styles/styles.css'

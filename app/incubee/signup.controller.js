@@ -181,16 +181,17 @@
                CompanyService.getCompanyInfo(localStorageService.get('incubeeId')).then(function(response) {
                    console.log(response);
                    vm.company.company_name = response.data.company_name;
-                   vm.company.url = response.data.company_url;
-                   vm.company.highConcept = response.data.high_concept;
+                   vm.company.company_url = response.data.company_url;
+                   vm.company.high_concept = response.data.high_concept;
                    vm.company.description = response.data.description;
-                   vm.company.twitterUrl = response.data.twitter_url;
-                   vm.company.videoUrl = response.data.video_url;
+                   vm.company.twitter_url = response.data.twitter_url;
+                   vm.company.video_url = response.data.video_url;
                    vm.company.location = response.data.location;
-                   vm.company.founderInfo = response.data.founder;
+                   vm.company.founder = response.data.founder;
                    vm.company.field = response.data.field;
-                   vm.company.phase = response.data.project_status;
-                   vm.company.images = response.data.images;
+                   vm.company.project_status = response.data.project_status;
+                   // vm.company.images = response.data.images;
+                   // vm.company.video = response.data.video;
                    // vm.comapany.id = "inc_a817515d-416f-4822-b6dd-a603b996e9a2";
                    if (response.data.funding == true) {
                        var fundingIndex = "Yes";
@@ -229,6 +230,7 @@
                vm.company.token = localStorageService.get('userGoogleInfo');
                vm.company.token = JSON.stringify(vm.company.token);
                vm.company.id = localStorageService.get('incubeeId');
+               console.log(vm.company)
                // console.log(vm.company.images);
                // if (vm.company.images.length > 1) {
                //    for(var i = 0; i < vm.company.images.length; i++){

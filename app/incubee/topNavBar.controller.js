@@ -22,8 +22,9 @@
         ////////////////
 
         function activate() {
-
-            if (localStorageService.get('loggedin') == false) {
+            var l = window.localStorage;
+            console.log(l)
+            if (localStorageService.get('loggedin') == false || l.length == 0) {
                 vm.login = "Login"
                 vm.showNavImg = false;
                 console.log("LOGIN");
@@ -64,11 +65,19 @@
 
         vm.viewProfile = function(){
             console.log("GO");
+
+
+            // FOR FOUNDER
             if (localStorageService.get('investor') == false) {
                 $state.go('/incubeeDetailsState',{incubeeId: localStorageService.get('incubeeId')});
             } else {
                 $state.go("/incubeesDisplayState");
             }
+
+
+            // FOR INVEST
+            // $state.go("/incubeesDisplayState");
+
             
         }
 

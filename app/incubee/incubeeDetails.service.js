@@ -39,6 +39,7 @@
                     "status": status
                 }
             }).then(function(response) {
+                    console.log(response);
                     if (typeof response === 'object') {
                         defer.resolve(response);
 

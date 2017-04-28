@@ -103,10 +103,10 @@
         <div id="divider"></div>
         <p>Read What's The People Are Saying About Us</p>
         <div id="singleReviewDiv">
-            <img src="/app/img/profilePlaceholder.jpg">
+            <img src="{{vm.activeReview.image}}">
             <div id="reviewTextDiv">
-                <h3>This is some text about how much I like it.</h3>
-                <p>- Cam Wilox</p>
+                <h3>{{vm.activeReview.review}}</h3>
+                <p>- {{vm.activeReview.name}}</p>
             </div>
         </div>
     </div>
@@ -116,8 +116,8 @@
         <p>See what’s included in the App</p>
         <div id="buttonDiv">
             <button id="imageButton" class="btn">ALL SCREENS</button>
-            <button id="imageButton" class="btn">USER PROFILE</button>
-            <button id="imageButton" class="btn">MESSAGES</button>
+            <button id="imageButton" class="btn" ng-click="displayScreens(profile)">USER PROFILE</button>
+            <button id="imageButton" class="btn" ng-click="displayScreens(messages)">MESSAGES</button>
         </div>
         <div class="slider filtering scrollpoint sp-effect5 slick-initialized slick-slider active animated fadeInUp">
             <div class="slick-list draggable" tabindex="0">
@@ -202,7 +202,7 @@
         <h1>Sign-up</h1>
         <div id="divider"></div>
         <div id="buttonDiv">
-            <button ui-sref="/signupState" class="btn">Bring your startup to incubee</button>            
+            <button ui-sref="/registerState" class="btn">Bring your startup to incubee</button>            
         </div>
     </div>
     <div id='footer'>

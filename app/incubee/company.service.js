@@ -37,10 +37,18 @@
 
             var fd = new FormData();
                         // if (data.images.length > 1 || data.images.length == null) {
+            if (data.images) {
                 for(var i =0; i < data.images.length; i++){
-                    fd.append("images", data.images[i].item);
-                    console.log(data.images[i].item);
+                    if (data.images[i].$$hashKey) {
+                        fd.append("images", data.images[i].item);
+                        console.log(data.images[i].item);
+                    }
                 }
+                if (data.video) {
+                    fd.append("video", data.video[0].item);
+                } 
+            }
+
             // }
             for(var key in data)
                 fd.append(key,data[key]);

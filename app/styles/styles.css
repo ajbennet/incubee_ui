@@ -103,10 +103,11 @@ button{
 }
 #homePage #featureDiv p{
     position: absolute;
-    right: 38%;
     z-index: 0;
-    bottom: 72%;
     margin-bottom: 2em;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
 }
 #homePage #featureDiv #featuresContent{
     width: 80%;
@@ -282,6 +283,11 @@ button{
     z-index: 0;
     bottom: 0;
 }
+@media(max-width: 800px){
+    #homePage #getAppDiv #imageDiv {
+        display: none;
+    }
+}
 #homePage #signUpHomeDiv{
     height: 300px;
     background-color: #fff;
@@ -356,6 +362,12 @@ button{
 
 
 /*incubeeDetailsState*/
+.my-custom-stars .star-button.star-on .material-icons {
+    color: #07947a;
+}
+.my-custom-stars .button .material-icons{
+    font-size: 37px;
+}
 #detailPageDiv {
     background-color: #eee;
 }
@@ -438,6 +450,7 @@ button{
 #detailsReviewProfileImage {
     max-height: 3em;
     max-width: 3em;
+    border-radius: 2em;
 }
 
 #detailReviewOptionsDiv {
@@ -458,15 +471,12 @@ button{
 }
 
 #descriptionsDiv {
-    padding-top: 1em;
-    margin-top: 1em;
-    padding-bottom: 1em;
-    margin-bottom: 1em;
+    margin: 1em 0em;
+    padding: 1em 2em;
 }
 
 #highConcept {
     margin-top: 3em;
-    margin-left: 2em;
     font-size: 1.3em;
     font-weight: normal;
 }
@@ -485,21 +495,50 @@ button{
 
 #submitReviewButton {
     margin-top: 1em;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    background-color: #07947a;
+    color: #fff;
+}
 
+#reviewRating {
+    width: 100%;
+    text-align: center;
+    margin: 1em 0;
+}
+
+#statusAndMeeting {
+    margin-right: auto;
+    margin-left: auto;
+    width: 50%;
+    margin-bottom: 1em;
+}
+
+#meeting, #status {
+    color: red;
+}
+
+#detailMeetingButton:focus {
+    background-color: #07947a;
+    color: #fff;
 }
 
 #incubeeDescription {
-    width: 70%;
+    width: 100%;
 }
 
 #pageContentBody {
     background-color: #eee;
 }
 video{
-    margin-left: 30%;
+    margin-left: auto;
     margin-right: auto;
     margin-top: 3em;
     margin-bottom: 3em;
+    width: 65%;
+    display: block;
 }
 
 
@@ -554,6 +593,10 @@ video{
     min-width: 100%;
     color: white;
     margin-left: 0px;
+}
+
+.my-custom-stars .star-button.star-on .material-icons #displayRating {
+    color: red;
 }
 
 #likeButton {

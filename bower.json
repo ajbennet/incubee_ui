@@ -20,7 +20,8 @@
     "angular-animate": "^1.6.1",
     "angular-bootstrap": "^2.4.0",
     "jquery": "^3.1.1",
-    "ng-google-signin": "^0.1.0"
+    "ng-google-signin": "^0.1.0",
+    "angular-jk-rating-stars": "^1.0.7"
   },
   "overrides": {
     "bootstrap": {

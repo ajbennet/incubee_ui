@@ -17,16 +17,21 @@
         vm.meeting = "";
         vm.reviewNamesArray = [];
         vm.video;
+        vm.trimmedUrl;
 
-        
+        // FOR INVEST
         // vm.investor = true;
+
+        // FOR FOUNDER
         vm.investor;
 
 
-        vm.ratingLabel;
+        vm.rating = 0;
         vm.selectedPerColor = "white";
         vm.selectedPhoColor = "white";
         vm.incubeeId;
+        vm.hasVideo;
+        vm.userRating = 0;
 
         activate();
 
@@ -38,7 +43,7 @@
 
 
 
-
+                // FOR FOUNDER
                 vm.investor = localStorageService.get('investor');
 
 
@@ -49,14 +54,14 @@
 
                     vm.incubeeDetailsArray = response;
                     console.log(vm.incubeeDetailsArray);
-                    console.log();
+                    if (vm.incubeeDetailsArray[0].data.video != null) {
+                        vm.hasVideo = false;
+                    } else {
+                        vm.hasVideo = true;
+                    }
                     vm.video = vm.incubeeDetailsArray[0].data.video;
                     videoId.load();
-                    if (vm.incubeeDetailsArray[1].data.reviews.length > 1) {
-                        vm.ratingLabel = "ratings";
-                    } else {
-                        vm.ratingLabel = "rating";
-                    }
+                    vm.rating = vm.incubeeDetailsArray[1].data.reviewData.averageRating
                     for (var i = 0; i < vm.incubeeDetailsArray[1].data.reviews.length; i++) {
                         console.log(vm.incubeeDetailsArray[1].data.reviews[i].user_id);
 
@@ -103,18 +108,22 @@
             console.log(vm.detailReviewRating);
         }
 
-        vm.submitReview = function(title, description) {
+        vm.onItemRating = function(rating) {
+            vm.userRating = rating;
+            console.log(vm.userRating);
+        }
 
-            $window.location.reload();
+        vm.submitReview = function(title, description) {
 
             var uid = localStorageService.get("investor_id");
             var incubeeId = $stateParams.incubeeId;
-            var rating = vm.detailReviewRating;
+            var rating = vm.userRating;
             var meeting = vm.meeting;
             var status = vm.detailReviewStatus;
 
             IncubeeDetailsService.submitReview(uid, title, description, incubeeId, rating, meeting, status).then(function(response) {
                 console.log(response);
+                $window.location.reload();
                 console.log("THIS IS BEING RETURNED");
             });
         }

@@ -5,6 +5,7 @@
             <div id="incubeeHeaderDiv">
                 <font size="5">{{customers.incubeeDetails.data.company_name}}</font>
                 </br>
+                <jk-rating-stars class="my-custom-stars" rating=" customers.averageRating" read-only="true"></jk-rating-stars>
                 <label>{{customers.averageRating}}/5 ( {{customers.numberOfRatings}} Reviews )</label>
                 <button class="btn" id="likeButton" ng-click="vm.unlike(customers.incubeeDetails.data.id)">Liked</button>
                 </br>

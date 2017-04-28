@@ -4,7 +4,8 @@
             <div>
                 <img id="incubeeDetailLogoImage" src="{{vm.incubeeDetailsArray[0].data.images[0]}}">
                 <font id="incubeeDetailTitle">{{vm.incubeeDetailsArray[0].data.company_name}}</font>
-                <font ng-show="vm.investor" id="detailRatingsLabel">{{vm.incubeeDetailsArray[1].data.reviewData.averageRating}}/5 ({{vm.incubeeDetailsArray[1].data.reviewData.noOfRatings}} {{vm.ratingLabel}})</font>
+<!--                 <font ng-show="vm.investor" id="detailRatingsLabel">{{vm.incubeeDetailsArray[1].data.reviewData.averageRating}}/5 ({{vm.incubeeDetailsArray[1].data.reviewData.noOfRatings}} {{vm.ratingLabel}})</font> -->
+                <jk-rating-stars ng-show="vm.investor" id="detailRatingsLabel" class="my-custom-stars" rating="vm.rating" read-only="true"></jk-rating-stars>
                 <button ng-hide="vm.investor" id="editCompanyInfoButton" class="btn" ui-sref="/signupState({incubeeId: '{{vm.incubeeId}}'})">Edit Info</button>
                 </br>
                 <div id="companyInfoDiv">
@@ -26,7 +27,7 @@
                         </li>
                     </ul>
                 </div>
-                <video width="400" controls id="videoId">
+                <video width="400" controls id="videoId" ng-hide="vm.hasVideo">
                     <source src="{{vm.video}}" type=video/webm>
                     <source src="{{vm.video}}" type=video/ogg>
                     <source src="{{vm.video}}" type=video/mp4>
@@ -63,18 +64,21 @@
                 <div class="modal-body">
                     <input class="form-control" type="text" name="title" ng-model="vm.titleForReview" placeholder="Review Title">
                     <div id="detailReviewOptionsDiv">
-                        <label>Status</label>
-                        <select ng-model="vm.detailReviewStatus">
-                            <option value="INV">Invested</option>
-                            <option value="INT">Interested</option>
-                            <option value="PAS">Passed</option>
-                        </select>
-                        <label>Meeting</label>
-                        <div class="btn-group">
-                            <button class="btn btn-default" id="detailMeetingButton" ng-model="vm.per" ng-click="vm.meetingType('PER')" style="background-color: {{vm.selectedPerColor}};">In Person</button>
-                            <button class="btn btn-default" id="detailMeetingButton" ng-model="vm.pho" ng-click="vm.meetingType('PHO')" style="background-color: {{vm.selectedPhoColor}};">Phone</button>
+                        <jk-rating-stars id="reviewRating" class="my-custom-stars" rating="0" read-only="false" on-rating="vm.onItemRating(rating)"></jk-rating-stars>
+                        <div id="statusAndMeeting">
+                            <label>Status</label>
+                            <select ng-model="vm.detailReviewStatus">
+                                <option value="INV">Invested</option>
+                                <option value="INT">Interested</option>
+                                <option value="PAS">Passed</option>
+                            </select>
+                            <label>Meeting</label>
+                            <div class="btn-group">
+                                <button class="btn btn-default" id="detailMeetingButton" ng-model="vm.per" ng-click="vm.meetingType('PER')">In Person</button>
+                                <button class="btn btn-default" id="detailMeetingButton" ng-model="vm.pho" ng-click="vm.meetingType('PHO')">Phone</button>
+                            </div>
                         </div>
-                        <label>Rating</label>
+                        <!-- <label>Rating</label>
                         <select ng-model="vm.detailReviewRating">
                             <option>0</option>
                             <option>1</option>
@@ -82,7 +86,7 @@
                             <option>3</option>
                             <option>4</option>
                             <option>5</option>
-                        </select>
+                        </select> -->
                     </div>
                     <textarea class="form-control" ng-model="vm.detailsForReview" placeholder="Description"></textarea>
                     <button id="submitReviewButton" class="btn btn-success" ng-click="vm.submitReview(vm.titleForReview, vm.detailsForReview)">Submit</button>
