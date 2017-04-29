@@ -167,6 +167,7 @@
        vm.imagesChosen;
        var imageShow;
        vm.incubeeId;
+       vm.previousImages;
 
 
        vm.company = {};
@@ -201,6 +202,7 @@
                    console.log(fundingIndex);
                    vm.company.funding = fundingIndex;
                    console.log(response.data.images);
+                   vm.previousImages = response.data.images;
                });
                // vm.cancelDestination = "/incubeeDetailsState({incubeeId: " +  "inc_a817515d-416f-4822-b6dd-a603b996e9a2" + "})";
            } else {

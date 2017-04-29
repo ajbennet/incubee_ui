@@ -87,7 +87,7 @@
         }
 
         vm.showCompanyWebsite = function(companyUrl) {
-            window.open('http://' + companyUrl);
+            window.open('http://'+companyUrl);
         }
 
         vm.meetingType = function(type) {
@@ -123,8 +123,12 @@
 
             IncubeeDetailsService.submitReview(uid, title, description, incubeeId, rating, meeting, status).then(function(response) {
                 console.log(response);
+                if (response.status == 409) {
+                    alert(response.data.statusMessage)
+                } else {
                 $window.location.reload();
                 console.log("THIS IS BEING RETURNED");
+            }
             });
         }
     }

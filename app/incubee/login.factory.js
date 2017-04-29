@@ -36,6 +36,7 @@
 	                    if (response.data.statusCode == "SIGN_1004") {
 	                        SigninService.signinUser(response.config.data.name, response.config.data.id, response.config.data.image_url, response.config.data.email, response.config.data.token).then(function(response) {
 	                            console.log(response);
+	                            localStorageService.set("incubeeId", response.data.servicedata.company_id);
 	                            localStorageService.set("userGoogleInfo",response.config.data);
 		                        localStorageService.set("name", response.config.data.name);
 		                        localStorageService.set("loggedin", true);
@@ -47,9 +48,9 @@
 										$state.go('/incubeesDisplayState');
 		                            } else {
 		                            	localStorageService.set("investor", false);
-		                            	localStorageService.set("incubeeId", response.data.servicedata.company_id);
 		                            	$state.go('/incubeeDetailsState',{incubeeId: response.data.servicedata.company_id});
 		                            }
+		                            localStorageService.set("incubeeId", response.data.servicedata.company_id);
 	                            } else {
 	                            	console.log("done");
 	                            }

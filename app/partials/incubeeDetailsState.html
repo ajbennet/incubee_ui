@@ -2,10 +2,11 @@
     <div id="detailViewContainer">
         <div>
             <div>
-                <img id="incubeeDetailLogoImage" src="{{vm.incubeeDetailsArray[0].data.images[0]}}">
+                <div id="detailLogoDiv">
+                    <img id="incubeeDetailLogoImage" src="{{vm.incubeeDetailsArray[0].data.images[0]}}">
+                </div>
                 <font id="incubeeDetailTitle">{{vm.incubeeDetailsArray[0].data.company_name}}</font>
-<!--                 <font ng-show="vm.investor" id="detailRatingsLabel">{{vm.incubeeDetailsArray[1].data.reviewData.averageRating}}/5 ({{vm.incubeeDetailsArray[1].data.reviewData.noOfRatings}} {{vm.ratingLabel}})</font> -->
-                <jk-rating-stars ng-show="vm.investor" id="detailRatingsLabel" class="my-custom-stars" rating="vm.rating" read-only="true"></jk-rating-stars>
+                <!--                 <font ng-show="vm.investor" id="detailRatingsLabel">{{vm.incubeeDetailsArray[1].data.reviewData.averageRating}}/5 ({{vm.incubeeDetailsArray[1].data.reviewData.noOfRatings}} {{vm.ratingLabel}})</font> -->
                 <button ng-hide="vm.investor" id="editCompanyInfoButton" class="btn" ui-sref="/signupState({incubeeId: '{{vm.incubeeId}}'})">Edit Info</button>
                 </br>
                 <div id="companyInfoDiv">
@@ -14,6 +15,10 @@
                     <font> {{vm.incubeeDetailsArray[0].data.founder}} - {{vm.incubeeDetailsArray[0].data.location}} </font>
                     </br>
                     <font> {{vm.incubeeDetailsArray[0].data.field}} - {{vm.incubeeDetailsArray[0].data.project_status}}</font>
+                    </br>
+                </div>
+                <div id="reviewDiv">
+                    <jk-rating-stars ng-show="vm.investor" id="detailRatingsLabel" class="my-custom-stars" rating="vm.rating" read-only="true"></jk-rating-stars>
                     </br>
                 </div>
             </div>
@@ -45,9 +50,15 @@
                     </thead>
                     <tbody class="table">
                         <tr ng-repeat="review in vm.incubeeDetailsArray[1].data.reviews">
-                            <td><img id="detailsReviewProfileImage" src="{{vm.reviewNamesArray[$index].image_url}}"></td>
-                            <td>{{review.rating}}/5</td>
-                            <td>{{vm.reviewNamesArray[$index].name}} - {{review.title}} - {{review.description}}</td>
+                            <td id="reviewPerson"><img id="detailsReviewProfileImage" src="{{vm.reviewNamesArray[$index].image_url}}">
+                            <p>{{vm.reviewNamesArray[$index].name}}</p>
+                            </td>
+                            <td>
+                                <jk-rating-stars ng-show="vm.investor" id="reviewedRating" class="my-custom-stars" rating="review.rating" read-only="true"></jk-rating-stars>
+                                <label>{{review.title}}</label>
+                                </br>
+                                <p>{{review.description}}</p>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -62,7 +73,6 @@
                     <h4 class="modal-title">Leave a Review</h4>
                 </div>
                 <div class="modal-body">
-                    <input class="form-control" type="text" name="title" ng-model="vm.titleForReview" placeholder="Review Title">
                     <div id="detailReviewOptionsDiv">
                         <jk-rating-stars id="reviewRating" class="my-custom-stars" rating="0" read-only="false" on-rating="vm.onItemRating(rating)"></jk-rating-stars>
                         <div id="statusAndMeeting">
@@ -78,18 +88,10 @@
                                 <button class="btn btn-default" id="detailMeetingButton" ng-model="vm.pho" ng-click="vm.meetingType('PHO')">Phone</button>
                             </div>
                         </div>
-                        <!-- <label>Rating</label>
-                        <select ng-model="vm.detailReviewRating">
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select> -->
+                        <input class="form-control" type="text" name="title" ng-model="vm.titleForReview" placeholder="Review Title">
+                        <textarea class="form-control" ng-model="vm.detailsForReview" placeholder="Description"></textarea>
+                        <button id="submitReviewButton" class="btn btn-success" ng-click="vm.submitReview(vm.titleForReview, vm.detailsForReview)">Submit</button>
                     </div>
-                    <textarea class="form-control" ng-model="vm.detailsForReview" placeholder="Description"></textarea>
-                    <button id="submitReviewButton" class="btn btn-success" ng-click="vm.submitReview(vm.titleForReview, vm.detailsForReview)">Submit</button>
                 </div>
             </div>
         </div>

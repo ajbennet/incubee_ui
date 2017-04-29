@@ -53,6 +53,7 @@
                     console.log(error);
                     console.log(defer);
                     defer.reject(error);
+                    return error
 
                 });
         }

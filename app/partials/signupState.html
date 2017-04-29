@@ -13,21 +13,29 @@
             <div id="signupImagepreview"></div>
             <label id="signupObjectLabel">Images</label>
             <!-- <input type="file" file-model="vm.myFile"/> -->
-<!--             <input  name="file" ng-value="fileToUpload" value="{{fileToUpload}}" file-model="fileToUpload" set-file-data="fileToUpload = value;" type="file" id="my_file" /> -->
+            <!--             <input  name="file" ng-value="fileToUpload" value="{{fileToUpload}}" file-model="fileToUpload" set-file-data="fileToUpload = value;" type="file" id="my_file" /> -->
             <input type="file" ng-model="vm.picFile" ng-change="vm.choose()" on-change="vm.uploadMultipleFiles()" multiple file-model="vm.company.images">
             <div id="preview"></div>
-            <div id="singupImagesDisplayDiv" ng-repeat="image in vm.company.images">
-<!--                 <div ng-if="image.url">
+            <div ng-if="vm.company.images" id="singupImagesDisplayDiv" ng-repeat="image in vm.company.images">
+                <!--                 <div ng-if="image.url">
                     <img id="signupImages" class="img-responsive img-thumbnail" src="{{image.url}}">
                 </div> -->
                 <div ng-if="!image.url">
-                    <img id="signupImages" class="fileModel img-responsive img-thumbnail" src="{{image}}">    
+                    <img id="signupImages" class="fileModel img-responsive img-thumbnail" src="{{image}}">
+                </div>
+            </div>
+            <div ng-if="!vm.company.images" id="singupImagesDisplayDiv" ng-repeat="image in vm.previousImages">
+                <!--                 <div ng-if="image.url">
+                    <img id="signupImages" class="img-responsive img-thumbnail" src="{{image.url}}">
+                </div> -->
+                <div ng-if="!image.url">
+                    <img id="signupImages" class="fileModel img-responsive img-thumbnail" src="{{image}}">
                 </div>
             </div>
         </div>
         <div>
-        <div id="signupObjectDiv">
-            <label id="signupObjectLabel">Video</label>
+            <div id="signupObjectDiv">
+                <label id="signupObjectLabel">Video</label>
                 <input type="file" ng-model="videoFile" custom-on-change="vm.uploadVideoFile" file-model="vm.company.video" ng-click="vm.selectedVideo()">
             </div>
         </div>
