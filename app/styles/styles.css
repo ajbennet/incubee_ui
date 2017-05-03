@@ -468,6 +468,11 @@ button{
     border-color: red;
 }
 
+#editCompanyInfoButton:hover{
+    background-color: red;
+    color: #fff;
+}
+
 #companyInfoDiv {
     display: inline-block;
 }
@@ -646,8 +651,15 @@ video{
 
 }
 
-
-
+.no-incubees-display h3{
+    font-weight: 200;
+    text-align: center;
+    margin-top: 5em;
+}
+#noImageDisplay{
+    width: 100%;
+    position: absolute;
+}
 
 
 

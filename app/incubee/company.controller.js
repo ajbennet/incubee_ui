@@ -15,7 +15,7 @@
 
         function activate() {
             CompanyService.getCompanyInfo().then(function(res) {
-                console.log(res);
+                // console.log(res);
                 vm.companyInfo = res;
             });
         }

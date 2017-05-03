@@ -58,7 +58,7 @@
 
 		function activate(){
 			var isLoggedIn = localStorageService.get('loggedIn');
-			console.log(isLoggedIn);
+			// console.log(isLoggedIn);
 			start();
 		}
 		function start() {
@@ -71,7 +71,7 @@
  			$timeout(start, 4000);
 		}
 		vm.appStore = function(type){
-			console.log(type);
+			// console.log(type);
 			if (type == 'android') {
 				window.open("https://play.google.com/store/apps/details?id=incubee.android");
 			} else {

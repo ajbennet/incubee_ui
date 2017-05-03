@@ -30,7 +30,7 @@
             }).then(function(response) {
                 return response;
             }, function errorCallback(response) {
-                console.log(response);
+                // console.log(response);
                 return response;
                 alert(response.data.statusMessage);
             });

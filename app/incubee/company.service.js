@@ -13,12 +13,12 @@
         function func() {}
 
         this.getCompanyInfo = function(incubeeId) {
-            console.log(incubeeId);
+            // console.log(incubeeId);
             return $http({
                 method: 'GET',
                 url: 'http://www.incub.ee/rest/v1.0/' + incubeeId
             }).then(function(response) {
-                console.log(response);
+                // console.log(response);
                 return response;
             })
         }
@@ -33,7 +33,7 @@
         //     headers: { 'Content-Type': undefined }
         // });
             var defer = $q.defer();
-            console.log(data);
+            // console.log(data);
 
             var fd = new FormData();
                         // if (data.images.length > 1 || data.images.length == null) {
@@ -41,12 +41,12 @@
                 for(var i =0; i < data.images.length; i++){
                     if (data.images[i].$$hashKey) {
                         fd.append("images", data.images[i].item);
-                        console.log(data.images[i].item);
+                        // console.log(data.images[i].item);
                     }
-                }
-                if (data.video) {
-                    fd.append("video", data.video[0].item);
                 } 
+            }
+            if (data.video) {
+                    fd.append("video", data.video[0].item);
             }
 
             // }
@@ -69,7 +69,7 @@
                 //     console.log(error);
                 //     console.log(defer);
                 //     defer.reject(error);
-                    console.log(response);
+                    // console.log(response);
                     return response;
                 });
 
@@ -94,7 +94,7 @@
         this.postImage = function(message){
 
             var defer = $q.defer();
-            console.log(token);
+            // console.log(token);
 
             // $http({
             //     method:'POST',

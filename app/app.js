@@ -48,7 +48,7 @@
                             values = [];
                             return;
                         } else {
-                            console.log(values);
+                            // console.log(values);
                             modelSetter(scope, values);
                         }
                     })

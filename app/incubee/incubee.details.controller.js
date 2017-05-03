@@ -49,11 +49,11 @@
 
 
 
-                console.log(vm.investor);
+                // console.log(vm.investor);
                 InvestorService.getIncubeeById($stateParams.incubeeId).then(function(response) {
 
                     vm.incubeeDetailsArray = response;
-                    console.log(vm.incubeeDetailsArray);
+                    // console.log(vm.incubeeDetailsArray);
                     if (vm.incubeeDetailsArray[0].data.video != null) {
                         vm.hasVideo = false;
                     } else {
@@ -61,27 +61,30 @@
                     }
                     vm.video = vm.incubeeDetailsArray[0].data.video;
                     videoId.load();
-                    vm.rating = vm.incubeeDetailsArray[1].data.reviewData.averageRating
-                    for (var i = 0; i < vm.incubeeDetailsArray[1].data.reviews.length; i++) {
-                        console.log(vm.incubeeDetailsArray[1].data.reviews[i].user_id);
-
-                        IncubeeDetailsService.getReviewers(vm.incubeeDetailsArray[1].data.reviews[i].user_id).then(function(response) {
-                            console.log(response);
-                            if (response.image_url == null) {
-
-                                response.image_url = '/app/img/profilePlaceholder.jpg';
-                            }
-                            vm.reviewNamesArray.push(response);
-
-                        });
+                    if (vm.incubeeDetailsArray[1].data.reviewData != null){
+                        vm.rating = vm.incubeeDetailsArray[1].data.reviewData.averageRating
                     }
-                    console.log(vm.reviewNamesArray);
+                    if (vm.incubeeDetailsArray[1].data) {
+                        for (var i = 0; i < vm.incubeeDetailsArray[1].data.reviews.length; i++) {
+                            // console.log(vm.incubeeDetailsArray[1].data.reviews[i].user_id);
 
-                    console.log(vm.incubeeDetailsArray[0].data.images);
+                            IncubeeDetailsService.getReviewers(vm.incubeeDetailsArray[1].data.reviews[i].user_id).then(function(response) {
+                                // console.log(response);
+                                if (response.image_url == null) {
+
+                                    response.image_url = '/app/img/profilePlaceholder.jpg';
+                                }
+                                vm.reviewNamesArray.push(response);
+                            });
+                        }
+                    }
+                    // console.log(vm.reviewNamesArray);
+
+                    // console.log(vm.incubeeDetailsArray[0].data.images);
 
                 });
             } else {
-                console.log("You are not logged in");
+                // console.log("You are not logged in");
                 $state.go('/signinState');
             }
         }
@@ -101,16 +104,16 @@
             }
             vm.meeting = type;
 
-            console.log(vm.meeting);
+            // console.log(vm.meeting);
 
-            console.log(vm.detailReviewStatus);
+            // console.log(vm.detailReviewStatus);
 
-            console.log(vm.detailReviewRating);
+            // console.log(vm.detailReviewRating);
         }
 
         vm.onItemRating = function(rating) {
             vm.userRating = rating;
-            console.log(vm.userRating);
+            // console.log(vm.userRating);
         }
 
         vm.submitReview = function(title, description) {
@@ -122,12 +125,12 @@
             var status = vm.detailReviewStatus;
 
             IncubeeDetailsService.submitReview(uid, title, description, incubeeId, rating, meeting, status).then(function(response) {
-                console.log(response);
+                // console.log(response);
                 if (response.status == 409) {
                     alert(response.data.statusMessage)
                 } else {
                 $window.location.reload();
-                console.log("THIS IS BEING RETURNED");
+                // console.log("THIS IS BEING RETURNED");
             }
             });
         }

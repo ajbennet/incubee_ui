@@ -23,15 +23,15 @@
 
         function activate() {
             var l = window.localStorage;
-            console.log(l)
+            // console.log(l)
             if (localStorageService.get('loggedin') == false || l.length == 0) {
                 vm.login = "Login"
                 vm.showNavImg = false;
-                console.log("LOGIN");
+                // console.log("LOGIN");
 
             } else {
                 vm.login = "Logout"
-                console.log("LOGOUT");
+                // console.log("LOGOUT");
                 vm.showNavImg = true;
                 var companyId = localStorageService.get('incubeeId');
                 vm.name = localStorageService.get('name');
@@ -64,7 +64,7 @@
         }
 
         vm.viewProfile = function(){
-            console.log("GO");
+            // console.log("GO");
 
 
             // FOR FOUNDER
