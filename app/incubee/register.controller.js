@@ -40,30 +40,35 @@
                // $state.go("/incubeeDetailsState", {incubeeId: 'inc_952745e0-ea2e-4365-83b3-cd379072ce57'});
            // });
            // console.log(token.value);
-           if (localStorageService.get("loggedin") == true) {
-               vm.company.token = localStorageService.get('userGoogleInfo');
-               vm.company.token = JSON.stringify(vm.company.token);
-               vm.company.id = localStorageService.get('incubeeId');
-               console.log(vm.company)
-               // console.log(vm.company.images);
-               // if (vm.company.images.length > 1) {
-               //    for(var i = 0; i < vm.company.images.length; i++){
-               //      vm.company.testImg = vm.company.images[i].item;
-               //       console.log(vm.company);
+               if (localStorageService.get("loggedin") == true) {
+                   vm.company.token = localStorageService.get('userGoogleInfo');
+                   vm.company.token = JSON.stringify(vm.company.token);
+                   if (localStorageService.get('incubeeId')) {
+                        vm.company.id = localStorageService.get('incubeeId');
+                   } else {
+                        vm.company.id = "";
+                   }
+                   // console.log(vm.company)
+                   // console.log(vm.company.images);
+                   // if (vm.company.images.length > 1) {
+                   //    for(var i = 0; i < vm.company.images.length; i++){
+                   //      vm.company.testImg = vm.company.images[i].item;
+                   //       console.log(vm.company);
 
-               //    }
-               // }
-               console.log(vm.company);
-               CompanyService.signupCompany(vm.company).then(function(result){
-                   console.log(result);
-                   $state.go("/incubeeDetailsState", {incubeeId: vm.company.id});
-               });
-           } else {
-               alert('Please signin with google');
-               LoginFactory.login();
+                   //    }
+                   // }
+                   // console.log(vm.company);
+                   CompanyService.signupCompany(vm.company).then(function(result){
+                       // console.log(result);
+                       LoginFactory.login('registerPage');
+                       // $state.go("/incubeeDetailsState", {incubeeId: vm.company.id});
+                   });
+               } else {
+                   alert('Please signin with google');
+                   LoginFactory.login();
+               }
+
            }
-
-       }
 
        vm.signupFunction = function(){
 
@@ -72,12 +77,12 @@
        vm.uploadMultipleFiles = function(event) {
            vm.imagesFile = event.target.files;
            var preview = document.querySelector('#signupImagepreview');
-           console.log(vm.imagesFile);
-           console.log(preview);
+           // console.log(vm.imagesFile);
+           // console.log(preview);
            function readAndPreview(file) {
                imageShow = file;
-               console.log(file);
-               console.log('show hide');
+               // console.log(file);
+               // console.log('show hide');
                // Make sure `file.name` matches our extensions criteria
                if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
                    var reader = new FileReader();

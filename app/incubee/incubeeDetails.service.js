@@ -39,7 +39,7 @@
                     "status": status
                 }
             }).then(function(response) {
-                    console.log(response);
+                    // console.log(response);
                     if (typeof response === 'object') {
                         defer.resolve(response);
 
@@ -50,8 +50,8 @@
 
                 },
                 function(error) {
-                    console.log(error);
-                    console.log(defer);
+                    // console.log(error);
+                    // console.log(defer);
                     defer.reject(error);
                     return error
 
@@ -67,7 +67,7 @@
                     'id': nameId
                 }
             }).then(function(response) {
-                console.log(response);
+                // console.log(response);
                 return (response.data.customerList[0]);
             })
 
