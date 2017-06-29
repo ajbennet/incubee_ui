@@ -1,0 +1,117 @@
+<div class="row" ng-cloak>
+    <button class="btn addCompanyBtn" data-toggle="modal" data-target="#addCompanyModal"><i class="fa fa-plus" aria-hidden="true"></i></button>
+    <ul id="incubeesDiv" ng-repeat="customers in vm.customersArray | orderBy:'incubeeDetails.data.company_name'">
+        <div id="incubeeDisplayDiv" class="col-sm-3" style="background-image:url('{{customers.incubeeDetails.data.images[0]}}'); overflow: hidden;">
+            <img id="noImageDisplay" ng-if="!customers.incubeeDetails.data.images[0]" src="app/img/incubeeIcon.png">
+            <div id="incubeeHeaderDiv">
+                <font size="5">{{customers.incubeeDetails.data.company_name}}</font>
+                </br>
+                <jk-rating-stars class="my-custom-stars" rating=" customers.averageRating" read-only="true"></jk-rating-stars>
+<!--                 <label>{{customers.averageRating}}/5 ( {{customers.numberOfRatings}} Reviews )</label>
+                <button class="btn" id="likeButton" ng-click="vm.unlike(customers.incubeeDetails.data.id)">Liked</button> -->
+                </br>
+                <font size="2.5">{{customers.incubeeDetails.data.founder}}</font>
+            </div>
+            <div id="incubeeDetailsDiv">
+                <p id="incubeeDescriptionDispaly">{{customers.incubeeDescription}}</p>
+                <br/>
+            </div>
+            <div>
+                <button id="viewMoreButton" class="btn" ui-sref="/incubeeDetailsState({incubeeId: '{{customers.incubeeDetails.data.id}}'})">View More</button>
+            </div>
+        </div>
+    </ul>
+    <div class="no-incubees-display" ng-if="vm.customersArray.length == 0">
+        <h3>You're all ready to start liking Incubees!</h3>
+    </div>
+</div>
+
+<div class="modal fade" id="addCompanyModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add company</h4>
+        </div>
+        <div class="modal-body">
+          <div id="signupObjectDiv">
+            <label id="signupObjectLabel">Company Name</label>
+            <input id="signupObject" ng-model="vm.company.company_name" type="text" name="company_name" placeholder="Company Name">
+        </div>
+        <div id="signupObjectDiv">
+            <label id="signupObjectLabel">URL</label>
+            <input id="signupObject" ng-model="vm.company.company_url" type="text" name="company_url" placeholder="Company URL">
+        </div>
+        <div>
+            <div id="signupImagepreview"></div>
+            <label id="signupObjectLabel">Images</label>
+            <!-- <input type="file" file-model="vm.myFile"/> -->
+<!--             <input  name="file" ng-value="fileToUpload" value="{{fileToUpload}}" file-model="fileToUpload" set-file-data="fileToUpload = value;" type="file" id="my_file" /> -->
+            <input type="file" ng-model="vm.picFile" ng-change="vm.choose()" on-change="vm.uploadMultipleFiles()" multiple file-model="vm.company.images">
+            <div id="preview"></div>
+            <div id="singupImagesDisplayDiv" ng-repeat="image in vm.company.images">
+<!--                 <div ng-if="image.url">
+                    <img id="signupImages" class="img-responsive img-thumbnail" src="{{image.url}}">
+                </div> -->
+                <div ng-if="!image.url">
+                    <img id="signupImages" class="fileModel img-responsive img-thumbnail" src="{{image}}">    
+                </div>
+            </div>
+        </div>
+        <div>
+        <div id="signupObjectDiv">
+            <label id="signupObjectLabel">Video</label>
+                <input type="file" ng-model="videoFile" custom-on-change="vm.uploadVideoFile" file-model="vm.company.video" ng-click="vm.selectedVideo()">
+            </div>
+        </div>
+        <div id="signupObjectDiv">
+            <label id="signupObjectLabel">High Concept</label>
+            <textarea id="highConceptTextAreaSignup" ng-model="vm.company.high_concept" name="high_concept" placeholder="High Concept or a brief description"></textarea>
+        </div>
+        <div id="signupObjectDiv">
+            <label id="signupObjectLabel">Company/Product Description</label>
+            <textarea id="companyDescriptionSignup" ng-model="vm.company.description" name="description" placeholder="Description about the company/product"></textarea>
+        </div>
+        <div id="signupObjectDiv">
+            <label id="signupObjectLabel">Twitter</label>
+            <input id="signupObject" ng-model="vm.company.twitter_url" type="ulr" name="twitter_url" placeholder="Twitter URL">
+        </div>
+        <div id="signupObjectDiv">
+            <label id="signupObjectLabel">Video</label>
+            <input id="signupObject" ng-model="vm.company.video_url" type="ulr" name="video_url" placeholder="Video URL">
+        </div>
+        <div id="signupObjectDiv">
+            <label id="signupObjectLabel">Location</label>
+            <input id="signupObject" ng-model="vm.company.location" type="text" name="location" placeholder="Location">
+        </div>
+        <div id="signupObjectDiv">
+            <label id="signupObjectLabel">Founder Information</label>
+            <input id="signupObject" ng-model="vm.company.founderInfo" type="text" name="founder" placeholder="Information about the founder">
+        </div>
+        <div id="signupObjectDiv">
+            <label id="signupObjectLabel">Filed</label>
+            <input id="signupObject" ng-model="vm.company.field" type="text" name="field" placeholder="Field">
+        </div>
+        <div id="signupObjectDiv">
+            <label id="signupObjectLabel">Startup Phase</label>
+            <select id="signupObject" ng-model="vm.company.project_status" name="project_status">
+                <option ng-repeat="option in vm.startupPhaseOptions" value="{{option}}">{{option}}</option>
+            </select>
+        </div>
+        <div id="signupObjectDiv">
+            <label id="signupObjectLabel">Seek Funding</label>
+            <select id="signupObject" ng-model="vm.company.funding" name="funding">
+                <option ng-repeat="fundingOption in vm.seekFundingOptions" value="{{fundingOption}}">{{fundingOption}}</option>
+            </select>
+        </div>
+        </div>
+        <div class="modal-footer">
+            <button id="signupButton" class="btn btn-success" ng-click="vm.signupIncubee(vm.token)">Sign up</button>
+            <button id="cancelSignup" class="btn btn-danger" data-dismiss="modal" ng-click="vm.cancelSignup()">Cancel</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>

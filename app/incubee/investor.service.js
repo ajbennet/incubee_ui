@@ -5,11 +5,12 @@
         .module('app')
         .service('InvestorService', InvestorService);
 
-    InvestorService.$inject = ['$http', '$q'];
+    InvestorService.$inject = ['$http', '$q', 'envService'];
 
     /* @ngInject */
-    function InvestorService($http, $q) {
+    function InvestorService($http, $q, envService) {
         this.func = func;
+        var apiRequest = envService.read('apiUrl');
 
         ////////////////
 
@@ -18,7 +19,7 @@
         //Gets all of the incubee id's that the investor has liked
         this.getAllUserLikes = function(investor_id) {
 
-            var URL = "http://www.incub.ee/rest/v1.0/like"
+            var URL = apiRequest + "/v1.0/like"
 
             return $http({
                 method: 'GET',
@@ -37,20 +38,24 @@
 
             var defer = $q.defer();
 
-            var incubeeURL = "http://www.incub.ee/rest/v1.0/" + incubeeId;
-            var reviewsURL = "http://www.incub.ee/incubee/rest/v1.0/review/" + incubeeId;
+            var incubeeDetailURL = apiRequest + "/v1.0/" + incubeeId;
+            var incubeeReviewURL = apiRequest + "/v1.0/review/" + incubeeId;
+            // var reviewsURL = "http://www.incub.ee/incubee/rest/v1.0/review/" + incubeeId;
+
+            http://www.qa.incub.ee/rest
 
             var getIncubeeDetails = $http({
                 method: 'GET',
-                url: incubeeURL
+                url: incubeeDetailURL
             });
 
             var getIncubeeReviews = $http({
                 method: 'GET',
-                url: reviewsURL
+                url: incubeeReviewURL
             });
 
             //Returns them together
+            console.log(getIncubeeDetails);
             return $q.all([getIncubeeDetails, getIncubeeReviews]).then(function(results) {
                 return results;
             })
@@ -59,11 +64,12 @@
         //Gets all of the reviews for the selected incubee
         this.getReviews = function(incubeeId) {
 
-            var reviewsURL = "http://www.incub.ee/incubee/rest/v1.0/review/" + incubeeId;
+            var incubeeURL = apiRequest + "/v1.0/review/" + incubeeId;
+            // var reviewsURL = "http://www.incub.ee/incubee/rest/v1.0/review/" + incubeeId;
 
             return $http({
                 method: 'GET',
-                url: reviewsURL
+                url: incubeeURL
             }).then(function(reviews) {
                 return reviews;
             })
@@ -72,7 +78,7 @@
         //Gets the user information for a users Id
         this.getUserById = function(userId) {
 
-            var userURL = 'http://www.incub.ee/rest/v1.0/customer/details';
+            var userURL = apiRequest + '/v1.0/customer/details';
 
             return $http({
                 method: 'GET',

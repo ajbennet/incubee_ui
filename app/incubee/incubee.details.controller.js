@@ -18,6 +18,10 @@
         vm.reviewNamesArray = [];
         vm.video;
         vm.trimmedUrl;
+        vm.editingIndex;
+        vm.originalReview;
+        vm.originalReviewTitle;
+        vm.notEditing = true;
 
         // FOR INVEST
         // vm.investor = true;
@@ -32,6 +36,13 @@
         vm.incubeeId;
         vm.hasVideo;
         vm.userRating = 0;
+        vm.uid = '';
+
+        vm.meetingTypeArray = ["PHO", "PER"];
+
+        vm.statusArray = [{title: "Invested", value: "INV"},{title: "Interested", value:"INT"}, {title: "Passed", value:"PAS"}];
+
+        vm.fakeArray = [100262006902753805443,100262006902753805448,100262006902753805441,1002620069027538054489,100262006902753805444,100262006902753805442];
 
         activate();
 
@@ -40,11 +51,15 @@
         function activate() {
             if (localStorageService.get("loggedin") == true) {
                 vm.incubeeId = localStorageService.get('incubeeId');
+                vm.uid = localStorageService.get("investor_id");
 
 
+                // FOR INVESTOR
+                // vm.investorId = 100262006902753805448;
 
                 // FOR FOUNDER
                 vm.investor = localStorageService.get('investor');
+                vm.investorId = localStorageService.get('investor_id');
 
 
 
@@ -53,7 +68,7 @@
                 InvestorService.getIncubeeById($stateParams.incubeeId).then(function(response) {
 
                     vm.incubeeDetailsArray = response;
-                    // console.log(vm.incubeeDetailsArray);
+                    console.log(vm.incubeeDetailsArray);
                     if (vm.incubeeDetailsArray[0].data.video != null) {
                         vm.hasVideo = false;
                     } else {
@@ -64,29 +79,26 @@
                     if (vm.incubeeDetailsArray[1].data.reviewData != null){
                         vm.rating = vm.incubeeDetailsArray[1].data.reviewData.averageRating
                     }
+                    vm.incubeeDetailsArray[1].data.reviews.sort(compare);
                     if (vm.incubeeDetailsArray[1].data) {
-                        for (var i = 0; i < vm.incubeeDetailsArray[1].data.reviews.length; i++) {
-                            // console.log(vm.incubeeDetailsArray[1].data.reviews[i].user_id);
-
-                            IncubeeDetailsService.getReviewers(vm.incubeeDetailsArray[1].data.reviews[i].user_id).then(function(response) {
-                                // console.log(response);
-                                if (response.image_url == null) {
-
-                                    response.image_url = '/app/img/profilePlaceholder.jpg';
-                                }
-                                vm.reviewNamesArray.push(response);
-                            });
-                        }
+                        IncubeeDetailsService.getReviewers(vm.incubeeDetailsArray[1].data.reviews).then(function(response) {
+                                vm.reviewNamesArray = response;
+                        });
                     }
-                    // console.log(vm.reviewNamesArray);
-
-                    // console.log(vm.incubeeDetailsArray[0].data.images);
 
                 });
             } else {
                 // console.log("You are not logged in");
                 $state.go('/signinState');
             }
+        }
+
+        function compare(a,b) {
+          if (a.date > b.date)
+            return -1;
+          if (a.date < b.date)
+            return 1;
+          return 0;
         }
 
         vm.showCompanyWebsite = function(companyUrl) {
@@ -118,13 +130,12 @@
 
         vm.submitReview = function(title, description) {
 
-            var uid = localStorageService.get("investor_id");
             var incubeeId = $stateParams.incubeeId;
             var rating = vm.userRating;
             var meeting = vm.meeting;
             var status = vm.detailReviewStatus;
 
-            IncubeeDetailsService.submitReview(uid, title, description, incubeeId, rating, meeting, status).then(function(response) {
+            IncubeeDetailsService.submitReview(vm.uid, title, description, incubeeId, rating, meeting, status).then(function(response) {
                 // console.log(response);
                 if (response.status == 409) {
                     alert(response.data.statusMessage)
@@ -133,6 +144,64 @@
                 // console.log("THIS IS BEING RETURNED");
             }
             });
+        }
+
+        vm.editReview = function(review) {
+            vm.editing = false;
+            if (vm.editingIndex) {
+                document.getElementById("userReview"+vm.editingIndex).contentEditable = "false"
+                document.getElementById("userReviewTitle"+vm.editingIndex).contentEditable = "false"
+            }
+            vm.detailReviewStatus = vm.incubeeDetailsArray[1].data.reviews[review].status;
+            vm.meetingType = vm.incubeeDetailsArray[1].data.reviews[review].meeting;
+            vm.userRating = vm.incubeeDetailsArray[1].data.reviews[review].rating;
+            document.getElementById("userReview"+review).contentEditable = "true"
+            document.getElementById("userReview"+review).focus();
+            vm.originalReview = document.getElementById("userReview"+review).innerHTML;
+            document.getElementById("userReviewTitle"+review).contentEditable = "true"
+            vm.originalReviewTitle = document.getElementById("userReviewTitle"+review).innerHTML;
+            vm.editingIndex = review;
+        }
+
+        vm.cancelReviewEdit = function() {
+            vm.editing = true;
+            document.getElementById("userReview"+vm.editingIndex).innerHTML = vm.originalReview;
+            document.getElementById("userReview"+vm.editingIndex).contentEditable = "false"
+            document.getElementById("userReviewTitle"+vm.editingIndex).innerHTML = vm.originalReviewTitle;
+            document.getElementById("userReviewTitle"+vm.editingIndex).contentEditable = "false"
+            vm.editingIndex = null;
+        }
+
+        vm.updateReview = function(reviewId, rating, meeting, status, incubeeId) {
+            
+            console.log("REVIEWID" + incubeeId);
+            var title = document.getElementById("userReviewTitle"+vm.editingIndex).innerHTML;
+            var description = document.getElementById("userReview"+vm.editingIndex).innerHTML;
+            document.getElementById("userReview"+vm.editingIndex).contentEditable = "false"
+            document.getElementById("userReviewTitle"+vm.editingIndex).contentEditable = "false"
+            if (title == "" || description == "" || vm.userRating == 0 || meeting == "" || status == null) {
+                if (vm.userRating == 0) {
+                    alert("you are not allowed to have a rating of 0")
+                } else {
+                    alert("Please check that the fields are filled our correctly");
+                }
+            } else {
+                IncubeeDetailsService.editReview(vm.uid, reviewId, title, description, incubeeId, vm.userRating, meeting, status).then(function(response){
+                    console.log(response);
+                    vm.editing = true;
+                    vm.editingIndex = null;
+                    $window.location.reload();
+                })
+            }
+        }
+
+        vm.deleteReview = function(index){
+            var reviewId = vm.incubeeDetailsArray[1].data.reviews[index].review_id;
+            var userId = vm.incubeeDetailsArray[1].data.reviews[index].user_id;
+            IncubeeDetailsService.deleteReview(userId, reviewId).then(function(response){
+                console.log(response);
+                $window.location.reload();
+            })
         }
     }
 })();

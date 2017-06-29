@@ -72,23 +72,22 @@
 
        }
 
-           vm.signupIncubee = function(token) {
-           if (localStorageService.get("loggedin") == true) {
-               vm.company.token = localStorageService.get('userGoogleInfo');
-               vm.company.token = JSON.stringify(vm.company.token);
-               vm.company.id = localStorageService.get('incubeeId');
-               // console.log(vm.company)
-               // console.log(vm.company);
-               CompanyService.signupCompany(vm.company).then(function(result){
-                   // console.log(result);
-                   $state.go("/incubeeDetailsState", {incubeeId: vm.company.id});
-               });
-           } else {
-               alert('Please signin with google');
-               LoginFactory.login();
-           }
-
-       }
+      vm.signupIncubee = function(token) {
+         if (localStorageService.get("loggedin") == true) {
+             vm.company.token = localStorageService.get('userGoogleInfo');
+             vm.company.token = JSON.stringify(vm.company.token);
+             vm.company.id = localStorageService.get('incubeeId');
+             // console.log(vm.company)
+             // console.log(vm.company);
+             CompanyService.signupCompany(vm.company).then(function(result){
+                 // console.log(result);
+                 $state.go("/incubeeDetailsState", {incubeeId: vm.company.id});
+             });
+         } else {
+             alert('Please signin with google');
+             LoginFactory.login();
+         }
+      }
 
        vm.signupFunction = function(){
 

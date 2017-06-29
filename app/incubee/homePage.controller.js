@@ -5,9 +5,9 @@
 	  .module('app')
 	  .controller('HomePageController', HomePageController);
 
-	HomePageController.$inject = ['localStorageService', '$timeout'];
+	HomePageController.$inject = ['localStorageService', '$timeout', 'envService'];
 
-	function HomePageController(localStorageService, $timeout) {
+	function HomePageController(localStorageService, $timeout, envService) {
 		var vm = this;
 		var isLoggedIn;
 		var reviewsArray = [
@@ -57,6 +57,7 @@
 		activate();
 
 		function activate(){
+
 			var isLoggedIn = localStorageService.get('loggedIn');
 			// console.log(isLoggedIn);
 			start();

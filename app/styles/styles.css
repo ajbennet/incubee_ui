@@ -384,6 +384,11 @@ button{
     margin-bottom: 5em;
 }
 
+#detailViewContainer h5 {
+    font-size: 16px;
+    margin-bottom: 0;
+}
+
 #detailImagesDiv {
     padding: 1em;
     width: auto;
@@ -444,7 +449,7 @@ button{
 }
 
 #detailReviewTable {
-    width: 80%;
+    width: 89%;
     margin-left: 5%;
 }
 
@@ -500,6 +505,27 @@ button{
     padding-top: 1.5em
 }
 
+#companyReviewsDiv .leaveReview{
+    width: 60%;
+}
+
+#companyReviewsDiv .leaveReview textarea{
+    width: 60%;
+    height: 40%;
+}
+
+#companyReviewsDiv .leaveReview img{
+    height: 4em;
+    border-radius: 2em;
+    float: left;
+    margin: 1em;
+    top: 0;
+
+}
+
+#companyReviewsDiv .submitCancelReview {
+    float: right;
+}
 #submitReviewButton {
     margin-top: 1em;
     width: 75%;
@@ -520,6 +546,45 @@ button{
     width: 15%;
 }
 
+#reviewPerson .userReviewName{
+    margin-bottom: 0;
+}
+
+.userReview:focus {
+    background-color: #eee;
+    outline: none;
+    border: 1px solid #ccc;
+}
+
+.saveReveiwBtn, .saveReveiwBtn:focus, .saveReveiwBtn:hover {
+    color: #00cc00;
+    border: 1px solid #00cc00;
+    margin-left: 0.5em;
+}
+
+.cancelReveiwBtn, .cancelReveiwBtn:focus, .cancelReveiwBtn:hover {
+    color: #ff0000;
+}
+
+.editReveiwBtn, .editReveiwBtn:focus, .editReveiwBtn:hover {
+    color: #3577f6;
+}
+
+.deleteReveiwBtn, .deleteReveiwBtn:focus, .deleteReveiwBtn:hover {
+    color: #aaa;
+    float: right;
+}
+
+.reviewTimestamp {
+    font-weight: 400;
+    color: #777;
+}
+
+#editReviewBtns button{
+    background-color: transparent;
+    box-shadow: none;
+}
+
 #reviewedRating {
     width: 100%;
     vertical-align: top;
@@ -527,6 +592,11 @@ button{
 }
 #reviewedRating a i {
     font-size: 15px;
+}
+
+.meetingReview, .statusReview {
+    font-weight: 400;
+    color: #222;
 }
 
 #statusAndMeeting {
@@ -904,5 +974,45 @@ video{
 .modal-body input{
     margin-bottom: 1em;
 }
+
+/*ADMIN PAGE*/
+.addCompanyBtn {
+    float: right;
+    margin: 2em 6em;
+    color: #07947a;
+    border-color: #07947a;
+    background-color: #fff;
+    width: 10%;
+    outline: none;
+    height: 6em;
+    width: 6em;
+}
+
+.addCompanyBtn:hover{
+    border-color: #fff;
+    background-color: #07947a;
+    color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

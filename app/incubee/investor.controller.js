@@ -22,11 +22,11 @@
             if (localStorageService.get("loggedin") == true) {
                 //Gets an array of all incubee id's the investor has liked in the past
                 InvestorService.getAllUserLikes(localStorageService.get("investor_id")).then(function(response) {
-                    // console.log(response);
+                    console.log(response);
                     //Loops through the array of incubee Id's and gets their details
                     for (var i = 0; i < response.data.incubeeList.length; i++) {
                         InvestorService.getIncubeeById(response.data.incubeeList[i]).then(function(incubeeResponse) {
-                            // console.log(incubeeResponse);
+                            console.log(incubeeResponse);
                             //Checks if the incubee is still in the database
                             if (incubeeResponse[0].data) {
                                 if (incubeeResponse[0].data.description) {

@@ -5,10 +5,11 @@
         .module('app')
         .service('CompanyService', CompanyService);
 
-    CompanyService.$inject = ['$http', '$q'];
+    CompanyService.$inject = ['$http', '$q', 'envService'];
 
-    function CompanyService($http, $q) {
+    function CompanyService($http, $q, envService) {
         this.func = func;
+        var apiRequest = envService.read('apiUrl');
 
         function func() {}
 
@@ -16,7 +17,7 @@
             // console.log(incubeeId);
             return $http({
                 method: 'GET',
-                url: 'http://www.incub.ee/rest/v1.0/' + incubeeId
+                url: apiRequest + '/v1.0/' + incubeeId
             }).then(function(response) {
                 // console.log(response);
                 return response;
@@ -52,7 +53,7 @@
             // }
             for(var key in data)
                 fd.append(key,data[key]);
-            return $http.post('http://www.incub.ee/rest/handle', fd, {
+            return $http.post(apiRequest + '/handle', fd, {
                 transformRequest: angular.identity,
                 headers:{'Content-Type': undefined}
             }).then(function(response){

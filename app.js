@@ -1,7 +1,10 @@
 (function() {
     'use strict';
 
-    var app = angular.module('app', ['ui.router', 'google-signin', 'LocalStorageModule', 'jkAngularRatingStars']);
+    var production = 'production';
+    console.log(production);
+
+    var app = angular.module('app', ['ui.router', 'google-signin', 'LocalStorageModule', 'jkAngularRatingStars', 'production']);
 
     //****** To upload one image
     // app.directive('fileModel', ['$parse', function ($parse) {
@@ -57,13 +60,49 @@
         };
     }])
 
-    app.config(function($stateProvider, $urlRouterProvider, GoogleSigninProvider) {
+    app.directive('ngConfirmClick', [
+        function(){
+            return {
+                link: function (scope, element, attr) {
+                    var msg = attr.ngConfirmClick || "Are you sure?";
+                    var clickAction = attr.confirmedClick;
+                    element.bind('click',function (event) {
+                        if ( window.confirm(msg) ) {
+                            scope.$eval(clickAction)
+                        }
+                    });
+                }
+            };
+    }])
+
+    app.config(function($stateProvider, $urlRouterProvider, GoogleSigninProvider, envServiceProvider) {
 
         $urlRouterProvider.otherwise('/homePageState');
 
         GoogleSigninProvider.init({
             client_id: '422172130038-1r08dm1nvgc73l9couv1nd8trfc03103.apps.googleusercontent.com',
         });
+
+        envServiceProvider.config({
+            domains: {
+                development: ['localhost'],
+                production: ['incub.ee'],
+                test: []
+            },
+            vars: {
+                development: {
+                    apiUrl: 'http://www.qa.incub.ee/rest'
+                },
+                production: {
+                    apiUrl: 'http://www.incub.ee/rest'
+                },
+                defaults: {
+                    apiUrl: 'http://www.incub.ee/rest'
+                }
+            }
+        });
+
+        envServiceProvider.check();
 
         $stateProvider
             .state('/incubeesDisplayState', {
@@ -163,6 +202,27 @@
                     content: {
                         templateUrl: "app/partials/homePageState.html",
                         controller: "HomePageController",
+                        controllerAs: 'vm',
+                        data: {
+                            css: 'app/styles/styles.css'
+                        }
+                    }
+                }
+            })
+            .state('/adminState', {
+                url: "/adminState",
+                views: {
+                    nav: {
+                        templateUrl: "app/partials/topNavBar.html",
+                        controller: 'TopNavController',
+                        controllerAs: 'vm',
+                        data: {
+                            css: 'app/styles/styles.css'
+                        }
+                    },
+                    content: {
+                        templateUrl: "app/partials/adminState.html",
+                        controller: "AdminController",
                         controllerAs: 'vm',
                         data: {
                             css: 'app/styles/styles.css'

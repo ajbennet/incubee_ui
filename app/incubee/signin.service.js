@@ -5,17 +5,18 @@
         .module('app')
         .service('SigninService', SigninService);
 
-    SigninService.$inject = ['$http'];
+    SigninService.$inject = ['$http', 'envService'];
 
-    function SigninService($http) {
+    function SigninService($http, envService) {
         this.func = func;
+        var apiRequest = envService.read('apiUrl');
 
         ////////////////
 
         function func() {}
 
         this.signupUser = function(name, id, imageUrl, email, token) {
-            var URL = 'http://www.incub.ee/rest/v1.0/signup';
+            var URL = apiRequest + '/v1.0/signup';
 
             return $http({
                 method: 'POST',
@@ -37,7 +38,7 @@
         }
 
         this.signinUser = function(name, id, imageUrl, email, token) {
-            var URL = 'http://www.incub.ee/rest/v1.0/login';
+            var URL = apiRequest + '/v1.0/login';
 
             return $http({
                 method: 'POST',

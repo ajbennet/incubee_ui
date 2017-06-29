@@ -19,7 +19,30 @@
                 </div>
                 <div id="reviewDiv">
                     <jk-rating-stars ng-show="vm.investor" id="detailRatingsLabel" class="my-custom-stars" rating="vm.rating" read-only="true"></jk-rating-stars>
+                    <h4>{{vm.incubeeDetailsArray[1].data.reviewData.noOfRatings}} Reveiws</h4>
                     </br>
+                    <div>
+                        <div>
+                            <label>{{vm.incubeeDetailsArray[1].data.reviewData.noOfStars[4]}}</label>
+                            <span>★★★★★</span>
+                        </div>
+                        <div>
+                            <label>{{vm.incubeeDetailsArray[1].data.reviewData.noOfStars[3]}}</label>
+                            <span>★★★★</span>
+                        </div>
+                        <div>
+                            <label>{{vm.incubeeDetailsArray[1].data.reviewData.noOfStars[2]}}</label>
+                            <span>★★★</span>
+                        </div>
+                        <div>
+                            <label>{{vm.incubeeDetailsArray[1].data.reviewData.noOfStars[1]}}</label>
+                            <span>★★</span>
+                        </div>
+                        <div>
+                            <label>{{vm.incubeeDetailsArray[1].data.reviewData.noOfStars[0]}}</label>
+                            <span>★</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div id="descriptionsDiv">
@@ -45,21 +68,94 @@
             <div id="companyReviewsDiv" ng-show="vm.investor">
                 <label id="detailReviewLable">Reviews</label>
                 <button data-toggle="modal" id="leaveReviewButton" data-target="#reviewModal">Leave a Review</button>
+                <!-- <div class="leaveReview">
+                    <div class="reviewContent">
+                        <img src="/app/img/profilePlaceholder.jpg">
+                        <textarea placeholder="Leave a reaview">
+                            
+                        </textarea>
+                    </div>
+                    <div class="submitCancelReview">
+                        <button>Cancel</button>
+                        <button>Submit</button>
+                    </div>
+                </div> -->
                 <table id="detailReviewTable" class="table">
                     <thead>
                     </thead>
                     <tbody class="table">
                         <tr ng-repeat="review in vm.incubeeDetailsArray[1].data.reviews">
-                            <td id="reviewPerson"><img id="detailsReviewProfileImage" src="{{vm.reviewNamesArray[$index].image_url}}">
-                            <p>{{vm.reviewNamesArray[$index].name}}</p>
+                            <td id="reviewPerson"><img id="detailsReviewProfileImage" src="{{vm.reviewNamesArray[$index].data.customerList[0].image_url}}">
+                            <label>{{vm.reviewNamesArray[$index].data.customerList[0].name}}</label>
+                            <p>{{review.date | date:'shortDate'}}</p>
+                            <p>{{review.date | date:'shortTime'}}</p>
+                            <div id="editReviewBtns" ng-if="review.user_id == vm.uid">
+                                    <button class="editReveiwBtn btn" ng-if="vm.editingIndex != $index" ng-click="vm.editReview($index)">Edit</button>
+                                    <div ng-if="vm.editingIndex == $index">
+                                        <button class="cancelReveiwBtn btn" ng-click="vm.cancelReviewEdit()">Cancel</button>
+                                        <button class="saveReveiwBtn btn" ng-click="vm.updateReview(review.review_id, vm.userRating, vm.meetingType, vm.detailReviewStatus, review.incubee_id)">Save</button>
+                                    </div>
+                                </div>
                             </td>
                             <td>
-                                <jk-rating-stars ng-show="vm.investor" id="reviewedRating" class="my-custom-stars" rating="review.rating" read-only="true"></jk-rating-stars>
-                                <label>{{review.title}}</label>
+                                <jk-rating-stars ng-if="vm.editingIndex != $index" ng-show="vm.investor" id="reviewedRating" class="my-custom-stars" rating="review.rating" read-only="true"></jk-rating-stars>
+                                <jk-rating-stars ng-if="vm.editingIndex == $index" ng-show="vm.investor" id="reviewedRating" class="my-custom-stars" rating="review.rating" read-only="false" on-rating="vm.onItemRating(rating)"></jk-rating-stars>
+                                <label id="userReviewTitle{{$index}}">{{review.title}}</label>
                                 </br>
-                                <p>{{review.description}}</p>
+                                <p id="userReview{{$index}}">{{review.description}}</p>
+                                <div class="reviewMeeting">
+                                    <label>Meeting:</label>
+                                        <label ng-if="vm.editingIndex != $index" class="meetingReview">{{review.meeting}}</label>
+                                        <select ng-if="vm.editingIndex == $index" ng-model="vm.meetingType">
+                                            <option value="PER">In Person</option>
+                                            <option value="PHO">Phone</option>
+                                        </select>
+                                    <label>Status:</label>
+                                        <label ng-if="vm.editingIndex != $index" class="statusReview">{{review.status}}</label>
+                                        <select name="status" ng-if="vm.editingIndex == $index" ng-model="vm.detailReviewStatus" ng-options="obj.value as obj.title for obj in vm.statusArray"></select>
+                                </div>
+                                <div id="editReviewBtns" ng-if="vm.editingIndex == $index">
+                                        <button class="deleteReveiwBtn btn" confirmed-click="vm.deleteReview($index)" 
+                                        ng-confirm-click="Would you like to delete this review?">Delete</button>
+                                </div>
                             </td>
                         </tr>
+                        <!-- TEST TEST TEST -->
+                        <!-- <tr ng-repeat="array in vm.fakeArray track by $index">
+                            <td id="reviewPerson"><img id="detailsReviewProfileImage" src="/app/img/profilePlaceholder.jpg">
+                            <p class="userReviewName">{{array}}</p>
+                            <label class="reviewTimestamp">04-25-17 3:45pm</label>
+                            <div id="editReviewBtns" ng-if="array != vm.investorId">
+                                    <button class="editReveiwBtn btn" ng-if="vm.editingIndex != $index" ng-click="vm.editReview($index)">Edit</button>
+                                    <div ng-if="vm.editingIndex == $index">
+                                        <button class="cancelReveiwBtn btn" ng-click="vm.cancelReviewEdit()">Cancel</button>
+                                        <button class="saveReveiwBtn btn" ng-click="vm.updateReview(vm.titleForReview, vm.detailsForReview, vm.userRating, vm.meetingType, vm.detailReviewStatus)">Save</button>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <jk-rating-stars ng-if="vm.editingIndex != $index" ng-show="vm.investor" id="reviewedRating" class="my-custom-stars" rating="4" read-only="true"></jk-rating-stars>
+                                <jk-rating-stars ng-if="vm.editingIndex == $index" ng-show="vm.investor" id="reviewedRating" class="my-custom-stars" rating="4" read-only="false" on-rating="vm.onItemRating(rating)"></jk-rating-stars>
+                                <h5 id="userReviewTitle{{$index}}" ng-model="vm.titleForReview">Great Company!</h5>
+                                </br>
+                                <p id="userReview{{$index}}" class="userReview" ng-model="vm.detailsForReview">I thought this was a great company, had a couple questions but over all I was very happy. I can't wait to see where it will go next!</p>
+                                <div class="reviewMeeting">
+                                    <label>Meeting:</label>
+                                        <label ng-if="vm.editingIndex != $index" class="meetingReview">PHO</label>
+                                        <select ng-if="vm.editingIndex == $index" ng-model="vm.meetingType">
+                                            <option value="PER">In Person</option>
+                                            <option value="PHO">Phone</option>
+                                        </select>
+                                    <label>Status:</label>
+                                        <label ng-if="vm.editingIndex != $index" class="statusReview">PAS</label>
+                                        <select ng-if="vm.editingIndex == $index" ng-model="vm.detailReviewStatus" ng-selected="1">
+                                            <option value="INV">Invested</option>
+                                            <option value="INT">Interested</option>
+                                            <option value="PAS">Passed</option>
+                                        </select>
+                                </div>
+                            </td>
+                        </tr> -->
                     </tbody>
                 </table>
             </div>

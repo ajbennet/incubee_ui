@@ -5,9 +5,9 @@
         .module('app')
         .controller('TopNavController', TopNavController);
 
-    TopNavController.$inject = ['$http', 'localStorageService', '$state', '$window', 'LoginFactory', 'envService', 'DevService'];
+    TopNavController.$inject = ['$http', 'localStorageService', '$state', '$window', 'LoginFactory', 'envService'];
 
-    function TopNavController($http, localStorageService, $state, $window, LoginFactory, envService, DevService) {
+    function TopNavController($http, localStorageService, $state, $window, LoginFactory, envService) {
         var vm = this;
         vm.name;
         vm.userImage;
@@ -18,26 +18,29 @@
         vm.signin = false;
         vm.loginTitle;
         vm.productionCheck = "";
+        var production = 'production';
         activate();
 
         ////////////////
 
         function activate() {
+            console.log(production);
             var environment = envService.get();
-        
-            console.log(DevService.environment);
 
-            envService.set(DevService.environment);
+            // FOR PRODUCTION API
+            // envService.set('production');
+
+            // FOR DEVELOPMENT API
+            envService.set('development');
 
             if (envService.is('development')) {
-                // console.log('DEV ENV');
+                console.log('DEV ENV');
                 vm.productionCheck = "DEVELOPMENT";
             } else if (envService.is('production')) {
-                // console.log('NOT DEV ENV');
+                console.log('NOT DEV ENV');
             }
 
             var apiUrl = envService.read('apiUrl');
-            // console.log(environment);
             var allVars = envService.read();
 
             console.log('API ' + apiUrl);
