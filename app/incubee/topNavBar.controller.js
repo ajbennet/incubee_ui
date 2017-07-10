@@ -27,7 +27,7 @@
         
             console.log(DevService.environment);
 
-            envService.set(DevService.environment);
+            // envService.set(DevService.environment);
 
             if (envService.is('development')) {
                 // console.log('DEV ENV');

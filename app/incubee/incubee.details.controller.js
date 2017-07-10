@@ -107,16 +107,16 @@
 
         vm.meetingType = function(type) {
 
-            if (type == "PHO") {
-                vm.selectedPhoColor = '#07947a';
-                vm.selectedPerColor = 'white';
-            } else {
-                vm.selectedPerColor = '#07947a';
-                vm.selectedPhoColor = 'white';
-            }
+            // if (type == "PHO") {
+            //     vm.selectedPhoColor = '#07947a';
+            //     vm.selectedPerColor = 'white';
+            // } else {
+            //     vm.selectedPerColor = '#07947a';
+            //     vm.selectedPhoColor = 'white';
+            // }
             vm.meeting = type;
 
-            // console.log(vm.meeting);
+            console.log(vm.meeting);
 
             // console.log(vm.detailReviewStatus);
 
@@ -134,6 +134,7 @@
             var rating = vm.userRating;
             var meeting = vm.meeting;
             var status = vm.detailReviewStatus;
+
 
             IncubeeDetailsService.submitReview(vm.uid, title, description, incubeeId, rating, meeting, status).then(function(response) {
                 // console.log(response);

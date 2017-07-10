@@ -11,6 +11,8 @@
         this.func = func;
         var apiRequest = envService.read('apiUrl');
 
+        console.log("THIS IS THE REQUEST " + apiRequest);
+
         ////////////////
 
         function func() {}

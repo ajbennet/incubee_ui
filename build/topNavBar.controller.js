@@ -31,7 +31,7 @@
             // envService.set('production');
 
             // FOR DEVELOPMENT API
-            envService.set('development');
+            // envService.set('development');
 
             if (envService.is('development')) {
                 console.log('DEV ENV');

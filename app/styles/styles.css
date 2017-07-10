@@ -610,7 +610,7 @@ button{
     color: red;
 }
 
-#detailMeetingButton:focus {
+#detailMeetingButton:active {
     background-color: #07947a;
     color: #fff;
 }

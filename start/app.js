@@ -236,4 +236,8 @@
             })
     });
 
+    app.run(function(envService, DevService){
+        console.log(DevService);
+        envService.set(DevService.environment);
+    });
 })();

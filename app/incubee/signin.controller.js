@@ -17,6 +17,7 @@
         ////////////////
 
         function activate() {
+            console.log("FIRING FIRST");
             if (localStorageService.get("loggedin") == true && localStorageService.get("investor") == true) {
                 $state.go('/incubeesDisplayState');
                 console.log("Currently Loggedin");
