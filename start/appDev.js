@@ -83,7 +83,7 @@
         $urlRouterProvider.otherwise('/homePageState');
 
         GoogleSigninProvider.init({
-            client_id: '422172130038-1r08dm1nvgc73l9couv1nd8trfc03103.apps.googleusercontent.com',
+            client_id: '1079218369753-3fg9sou40kdrjb5hsfnm0oo9jj0dok9a.apps.googleusercontent.com',
         });
 
         envServiceProvider.config({
