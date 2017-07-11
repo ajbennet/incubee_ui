@@ -180,6 +180,7 @@
             var description = document.getElementById("userReview"+vm.editingIndex).innerHTML;
             document.getElementById("userReview"+vm.editingIndex).contentEditable = "false"
             document.getElementById("userReviewTitle"+vm.editingIndex).contentEditable = "false"
+            console.log(description);
             if (title == "" || description == "" || vm.userRating == 0 || meeting == "" || status == null) {
                 if (vm.userRating == 0) {
                     alert("you are not allowed to have a rating of 0")
@@ -191,7 +192,7 @@
                     console.log(response);
                     vm.editing = true;
                     vm.editingIndex = null;
-                    $window.location.reload();
+                    // $window.location.reload();
                 })
             }
         }

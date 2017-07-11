@@ -3,7 +3,7 @@
     <li id="navItemRight"><a id="navItemAnchorRight" data-toggle="modal" id="leaveReviewButton" data-target="#logoutModal" ng-click="vm.loginOutButtonPress()">{{vm.login}}</a></li>
         <li id="navItemRight" ng-show="vm.showNavImg"><img src="{{vm.userImage}}"></a></li>
     <li id="navItemRight"><a id="navItemAnchorLeft" style="color:black;" ng-click="vm.viewProfile()">{{vm.name}}</a></li>
-    <li id="navItemLeft"><a id="navItemAnchorLeft" class="active" ui-sref="/adminState">Admin</a></li>
+    <li id="navItemLeft" ng-if="vm.productionCheck == 'DEVELOPMENT'"><a id="navItemAnchorLeft" class="active" ui-sref="/adminState">Admin</a></li>
     <li style="color: red; font-size: 2em; font-weight: bold; display: grid;">{{vm.productionCheck}}</li>
 </ul>
 <div class="modal fade" id="logoutModal" role="dialog">
